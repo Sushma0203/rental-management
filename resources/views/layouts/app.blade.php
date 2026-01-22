@@ -14,134 +14,127 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
+    <style>
         :root {
-            --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.15);
-            --secondary: #a855f7;
-            --secondary-glow: rgba(168, 85, 247, 0.15);
-            --sidebar-bg: rgba(255, 255, 255, 0.75);
-            --card-bg: rgba(255, 255, 255, 0.9);
+            --primary: #059669; /* Emerald 600 */
+            --primary-light: #d1fae5; /* Emerald 100 */
+            --bg-mint: #f0fdf4; /* Mint Green Background */
+            --sidebar-bg: #ffffff;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --heading-font: 'Outfit', sans-serif;
+            --body-font: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,0.03) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,0.03) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,0.03) 0, transparent 50%);
-            min-height: 100vh;
+            background-color: var(--bg-mint);
+            font-family: var(--body-font);
+            color: #1e293b;
         }
 
-        .heading-font {
-            font-family: 'Outfit', sans-serif;
-        }
+        .heading-font { font-family: var(--heading-font); }
 
-        /* Glassmorphism Refined */
-        .glass-sidebar {
+        /* Block Style Components */
+        .block-sidebar {
             background: var(--sidebar-bg);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-right: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
+            border-right: 3px solid var(--border-color);
+            box-shadow: 6px 0 0 rgba(0, 0, 0, 0.02);
         }
 
-        .glass-card {
+        .block-card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid var(--border-color);
+            border-radius: 1.25rem;
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .glass-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.12);
-            border-color: rgba(99, 102, 241, 0.3);
+        .block-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 10px 10px 0 rgba(5, 150, 105, 0.1);
+            border-color: var(--primary);
         }
 
-        /* Nav Animations */
         .nav-link-active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: var(--primary);
             color: white !important;
-            box-shadow: 0 8px 20px var(--primary-glow);
-            transform: scale(1.02);
+            box-shadow: 4px 4px 0 rgba(4, 120, 87, 0.3);
         }
 
         .nav-link {
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
         }
 
         .nav-link:hover:not(.nav-link-active) {
-            background: rgba(99, 102, 241, 0.05);
+            background: var(--primary-light);
             color: var(--primary);
-            transform: translateX(4px);
+            border-color: var(--primary);
+            transform: scale(1.02);
         }
 
-        /* Global Entrance Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-mint); }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border: 2px solid var(--bg-mint);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .animate-fade-up {
-            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        .animate-block-up {
+            animation: slideIn 0.4s ease-out forwards;
         }
-
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { 
-            background: rgba(0, 0, 0, 0.1); 
-            border-radius: 10px; 
-        }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.2); }
     </style>
 </head>
 <body class="antialiased text-slate-900">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        <aside class="w-64 glass-sidebar h-full flex flex-col transition-all duration-300 ease-in-out">
-            <div class="p-6 flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white">
-                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+        <aside class="w-64 block-sidebar h-full flex flex-col z-20">
+            <div class="p-8">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
+                        <i data-lucide="leaf" class="text-white w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black heading-font tracking-tight text-slate-900 leading-none">MINT</span>
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600">Smart Retail</p>
+                    </div>
                 </div>
-                <span class="text-xl font-bold heading-font tracking-tight">SmartRetail</span>
             </div>
 
-            <nav class="flex-1 px-4 space-y-1 mt-4">
-                <a href="/" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 nav-link {{ request()->is('/') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-                    <span class="font-medium">Dashboard</span>
+            <nav class="flex-1 px-4 space-y-2 mt-4">
+                <a href="/" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold nav-link {{ request()->is('/') ? 'nav-link-active' : 'text-slate-500 hover:bg-slate-50' }}">
+                    <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                    <span>Overview</span>
                 </a>
-                <a href="/inventory" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-600 nav-link {{ request()->is('inventory') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="package" class="w-5 h-5"></i>
-                    <span class="font-medium">Inventory</span>
+                <a href="/inventory" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold nav-link {{ request()->is('inventory') ? 'nav-link-active' : 'text-slate-500 hover:bg-slate-50' }}">
+                    <i data-lucide="box" class="w-5 h-5"></i>
+                    <span>Inventory</span>
                 </a>
-                <a href="/sales" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-600 nav-link {{ request()->is('sales') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                    <span class="font-medium">Sales & POS</span>
+                <a href="/sales" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold nav-link {{ request()->is('sales') ? 'nav-link-active' : 'text-slate-500 hover:bg-slate-50' }}">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                    <span>Checkout</span>
                 </a>
-                <a href="/analytics" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-600 nav-link {{ request()->is('analytics') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="trending-up" class="w-5 h-5"></i>
-                    <span class="font-medium">Analytics</span>
-                </a>
-                <a href="/customers" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-600 nav-link {{ request()->is('customers') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="users" class="w-5 h-5"></i>
-                    <span class="font-medium">Customers</span>
+                <a href="/analytics" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold nav-link {{ request()->is('analytics') ? 'nav-link-active' : 'text-slate-500 hover:bg-slate-50' }}">
+                    <i data-lucide="line-chart" class="w-5 h-5"></i>
+                    <span>Insights</span>
                 </a>
             </nav>
 
-            <div class="p-4 mt-auto">
-                <div class="bg-indigo-50 rounded-2xl p-4">
-                    <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider mb-2">Pro Plan</p>
-                    <p class="text-xs text-indigo-900 leading-relaxed mb-3">Unlock advanced analytics and AI insights.</p>
-                    <button class="w-full py-2 bg-indigo-600 text-white rounded-lg text-xs font-bold hover:bg-indigo-700 transition-colors">Upgrade Now</button>
+            <div class="p-6 mt-auto">
+                <div class="bg-emerald-50 rounded-2xl p-5 border-2 border-emerald-100">
+                    <p class="text-xs font-black text-emerald-600 uppercase tracking-widest mb-1">Status</p>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                        <p class="text-sm font-bold text-emerald-900">System Online</p>
+                    </div>
                 </div>
             </div>
         </aside>
