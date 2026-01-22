@@ -146,8 +146,8 @@
                         <i data-lucide="leaf" class="text-white w-5 h-5"></i>
                     </div>
                     <div class="sidebar-header-text">
-                        <span class="text-xl font-black heading-font tracking-tight text-slate-900 leading-none">MINT</span>
-                        <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-emerald-600 mt-0.5">Retail Solutions</p>
+                        <span class="text-3xl font-black heading-font tracking-tighter text-slate-900 leading-none block">NIWAS</span>
+                        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600 mt-1">Management Hub</p>
                     </div>
                 </div>
             </div>
