@@ -1,110 +1,151 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 animate-block-up">
+<div class="max-w-7xl mx-auto py-4">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 animate-fade-in">
         <div>
-            <h1 class="text-4xl font-black heading-font text-slate-900 tracking-tight">Stock <span class="text-emerald-600">Inventory</span></h1>
-            <p class="text-slate-500 mt-1 font-medium">Manage your products and intelligent stock alerts.</p>
+            <p class="text-sm font-bold text-emerald-600 uppercase tracking-[0.2em] mb-2">Inventory Intelligence</p>
+            <h1 class="text-5xl font-black heading-font text-slate-900 tracking-tight">Asset <span class="bg-[linear-gradient(135deg,#064e3b_0%,#059669_100%)] bg-clip-text text-transparent">Management</span></h1>
         </div>
-        <div class="mt-6 md:mt-0 flex space-x-4">
-            <button class="flex items-center space-x-2 px-6 py-3 bg-white border-2 border-slate-200 rounded-2xl text-sm font-black text-slate-700 hover:border-emerald-500 transition-all shadow-sm">
+        <div class="mt-8 md:mt-0 flex space-x-4">
+            <button class="flex items-center space-x-3 px-6 py-4 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-700 hover:border-emerald-500 transition-all">
                 <i data-lucide="filter" class="w-4 h-4 text-emerald-600"></i>
-                <span>Filter</span>
+                <span>Global Filter</span>
             </button>
-            <button class="flex items-center space-x-2 px-8 py-3.5 bg-emerald-600 rounded-2xl text-sm font-black text-white hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-200">
+            <button class="flex items-center space-x-3 px-8 py-4 bg-slate-900 text-white rounded-2xl text-sm font-bold hover:bg-emerald-600 transition-all shadow-xl shadow-slate-100">
                 <i data-lucide="plus" class="w-4 h-4"></i>
-                <span>Add Product</span>
+                <span>Add New Asset</span>
             </button>
         </div>
     </div>
 
-    <!-- Inventory Stats -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-        <div class="block-card p-8 flex items-center space-x-6 animate-block-up" style="animation-delay: 0.1s">
-            <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border-2 border-emerald-100">
-                <i data-lucide="package" class="w-8 h-8"></i>
+    <!-- Stats Matrix -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="prof-card p-10 flex items-center space-x-8 animate-fade-in" style="animation-delay: 0.1s">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 shrink-0">
+                <i data-lucide="database" class="w-8 h-8"></i>
             </div>
             <div>
-                <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest">Total Items</p>
-                <p class="text-3xl font-black text-slate-900">2,845</p>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Inventory</p>
+                <p class="text-4xl font-black text-slate-900 tabular-nums">12,845</p>
             </div>
         </div>
-        <div class="block-card p-8 flex items-center space-x-6 animate-block-up" style="animation-delay: 0.2s">
-            <div class="w-16 h-16 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center border-2 border-rose-100">
-                <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+        <div class="prof-card p-10 flex items-center space-x-8 animate-fade-in" style="animation-delay: 0.2s">
+            <div class="w-16 h-16 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center border border-rose-100 shrink-0">
+                <i data-lucide="alert-octagon" class="w-8 h-8"></i>
             </div>
             <div>
-                <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest">Low Stock</p>
-                <p class="text-3xl font-black text-rose-600">12</p>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Critical Deficit</p>
+                <p class="text-4xl font-black text-rose-600 tabular-nums">14</p>
             </div>
         </div>
-        <div class="block-card p-8 flex items-center space-x-6 animate-block-up" style="animation-delay: 0.3s">
-            <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border-2 border-blue-100">
-                <i data-lucide="check-circle" class="w-8 h-8"></i>
+        <div class="prof-card p-10 flex items-center space-x-8 animate-fade-in" style="animation-delay: 0.3s">
+            <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100 shrink-0">
+                <i data-lucide="clipboard-check" class="w-8 h-8"></i>
             </div>
             <div>
-                <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest">Active Skus</p>
-                <p class="text-3xl font-black text-slate-900">1,942</p>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Involved SKUs</p>
+                <p class="text-4xl font-black text-slate-900 tabular-nums">2,140</p>
             </div>
         </div>
     </div>
 
-    <!-- Search and Table -->
-    <div class="block-card overflow-hidden animate-block-up" style="animation-delay: 0.4s">
-        <div class="p-8 border-b-2 border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6 bg-slate-50/50">
-            <div class="relative w-full md:w-[400px]">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-                    <i data-lucide="search" class="w-5 h-5"></i>
-                </span>
-                <input type="text" class="bg-white border-2 border-slate-200 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-bold focus:ring-0 focus:border-emerald-500 w-full transition-all outline-none" placeholder="Search inventory...">
+    <!-- Asset Browser -->
+    <div class="prof-card overflow-hidden animate-fade-in" style="animation-delay: 0.4s">
+        <div class="p-10 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div class="relative w-full md:w-[450px]">
+                <i data-lucide="search" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300"></i>
+                <input type="text" class="bg-slate-50 border border-slate-100 rounded-2xl py-4 pl-14 pr-6 text-sm font-medium focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 w-full transition-all outline-none" placeholder="Search by SKU, Name or Category...">
             </div>
-            <div class="flex items-center space-x-3">
-                <button class="text-slate-900 font-black px-6 py-3 rounded-xl border-2 border-slate-200 hover:bg-white transition-all text-sm uppercase tracking-widest">Export</button>
+            <div class="flex items-center space-x-4">
+                <button class="text-slate-600 font-bold px-6 py-3 rounded-xl hover:bg-slate-50 transition-all text-sm">Download Ledger</button>
             </div>
         </div>
         
         <div class="overflow-x-auto">
             <table class="w-full text-left">
-                <thead class="bg-slate-50 text-slate-400 uppercase text-[11px] font-black tracking-[0.2em]">
+                <thead class="bg-slate-50 text-slate-400 uppercase text-[10px] font-black tracking-[0.2em]">
                     <tr>
-                        <th class="px-10 py-6">Product details</th>
-                        <th class="px-10 py-6">Price</th>
-                        <th class="px-10 py-6">Level</th>
-                        <th class="px-10 py-6">Status</th>
+                        <th class="px-10 py-6">Asset Component</th>
+                        <th class="px-10 py-6">Valuation</th>
+                        <th class="px-10 py-6">Status Indicator</th>
+                        <th class="px-10 py-6">Last Audit</th>
                         <th class="px-10 py-6"></th>
                     </tr>
                 </thead>
-                <tbody class="divide-y-2 divide-slate-100">
-                    <tr class="hover:bg-emerald-50/50 transition-colors group">
-                        <td class="px-10 py-6">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center border-2 border-slate-200 group-hover:scale-110 transition-transform shadow-sm overflow-hidden">
-                                     <i data-lucide="smartphone" class="w-7 h-7 text-emerald-600"></i>
+                <tbody class="divide-y divide-slate-100">
+                    <tr class="hover:bg-slate-50/50 transition-colors group">
+                        <td class="px-10 py-10">
+                            <div class="flex items-center space-x-6">
+                                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-slate-200 group-hover:scale-105 transition-transform shadow-sm relative overflow-hidden shrink-0">
+                                     <i data-lucide="monitor" class="w-7 h-7 text-emerald-600"></i>
+                                     <div class="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 </div>
                                 <div>
-                                    <p class="font-black text-slate-900 group-hover:text-emerald-700 transition-colors">Sony WH-1000XM4</p>
-                                    <p class="text-xs font-mono font-black text-slate-400 mt-1">SNY-82910-XM4</p>
+                                    <p class="text-base font-black text-slate-900 group-hover:text-emerald-700 transition-colors">MacBook Pro 16"</p>
+                                    <p class="text-xs font-mono font-bold text-slate-400 mt-1">APL-MBP-16-M3</p>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-10 py-6 text-lg font-black text-slate-900 tracking-tight">Rs. 34,800</td>
-                        <td class="px-10 py-6">
-                            <div class="flex flex-col space-y-2 w-40">
-                                <div class="flex justify-between items-center text-[10px] font-black uppercase text-slate-400 tracking-widest">
-                                    <span>82% stock</span>
+                        <td class="px-10 py-10">
+                            <p class="text-lg font-black text-slate-900 tracking-tight">Rs. 3,45,000</p>
+                            <p class="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">Base Unit Price</p>
+                        </td>
+                        <td class="px-10 py-10">
+                            <div class="flex flex-col space-y-3 w-44">
+                                <div class="flex justify-between items-center text-[10px] font-black uppercase text-slate-500 tracking-widest leading-none">
+                                    <span>Nominal Supply</span>
+                                    <span class="text-emerald-600">85%</span>
                                 </div>
-                                <div class="w-full bg-slate-100 h-3 rounded-full border-2 border-slate-200 overflow-hidden">
-                                    <div class="bg-emerald-500 h-full rounded-full shadow-[0_0_10px_rgba(16,185,129,0.3)]" style="width: 82%"></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 85%"></div>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-10 py-6">
-                            <span class="px-4 py-1.5 bg-emerald-50 text-emerald-600 border-2 border-emerald-100 rounded-xl text-[10px] font-black uppercase tracking-widest">Healthy</span>
+                        <td class="px-10 py-10">
+                             <span class="px-4 py-1.5 bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl text-[10px] font-black uppercase tracking-widest cursor-default">In Stock</span>
                         </td>
-                        <td class="px-10 py-6 text-right">
-                            <button class="p-3 bg-slate-100 rounded-xl border-2 border-slate-200 text-slate-400 hover:text-emerald-600 hover:border-emerald-400 transition-all">
-                                <i data-lucide="edit-3" class="w-5 h-5"></i>
+                        <td class="px-10 py-10 text-right">
+                            <button class="p-3 bg-white rounded-xl border border-slate-200 text-slate-400 hover:text-emerald-600 hover:border-emerald-500 transition-all">
+                                <i data-lucide="more-horizontal" class="w-5 h-5"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr class="hover:bg-slate-50/50 transition-colors group">
+                        <td class="px-10 py-10">
+                            <div class="flex items-center space-x-6">
+                                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-slate-200 group-hover:scale-105 transition-transform shadow-sm relative overflow-hidden shrink-0">
+                                     <i data-lucide="tablet" class="w-7 h-7 text-amber-600"></i>
+                                     <div class="absolute inset-0 bg-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                </div>
+                                <div>
+                                    <p class="text-base font-black text-slate-900 group-hover:text-amber-700 transition-colors">iPad Air 5th Gen</p>
+                                    <p class="text-xs font-mono font-bold text-slate-400 mt-1">APL-IPD-AIR-5G</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-10 py-10">
+                            <p class="text-lg font-black text-slate-900 tracking-tight">Rs. 85,000</p>
+                            <p class="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">Base Unit Price</p>
+                        </td>
+                        <td class="px-10 py-10">
+                            <div class="flex flex-col space-y-3 w-44">
+                                <div class="flex justify-between items-center text-[10px] font-black uppercase text-slate-500 tracking-widest leading-none">
+                                    <span>Limited Yield</span>
+                                    <span class="text-amber-600">12%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-amber-500 h-full rounded-full" style="width: 12%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-10 py-10">
+                             <span class="px-4 py-1.5 bg-amber-50 text-amber-600 border border-amber-100 rounded-xl text-[10px] font-black uppercase tracking-widest cursor-default">Low Stock</span>
+                        </td>
+                        <td class="px-10 py-10 text-right">
+                            <button class="p-3 bg-white rounded-xl border border-slate-200 text-slate-400 hover:text-amber-600 hover:border-amber-500 transition-all">
+                                <i data-lucide="more-horizontal" class="w-5 h-5"></i>
                             </button>
                         </td>
                     </tr>
@@ -112,11 +153,11 @@
             </table>
         </div>
         
-        <div class="p-8 border-t-2 border-slate-100 flex items-center justify-between bg-slate-50/30">
-            <span class="text-slate-400 text-[11px] font-black uppercase tracking-[0.2em]">Showing 01 — 12 results</span>
+        <div class="p-10 border-t border-slate-100 flex items-center justify-between bg-slate-50/30">
+            <span class="text-slate-400 text-xs font-bold uppercase tracking-[0.15em]">Browsing page <span class="text-slate-900">01</span> — 12 results cataloged</span>
             <div class="flex items-center space-x-3">
-                <button class="p-3 bg-white border-2 border-slate-200 rounded-xl text-slate-400 hover:border-emerald-500 hover:text-emerald-600 transition-all"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                <button class="p-3 bg-white border-2 border-slate-200 rounded-xl text-slate-400 hover:border-emerald-500 hover:text-emerald-600 transition-all"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                <button class="px-5 py-3 bg-white border border-slate-200 rounded-xl text-slate-400 hover:border-emerald-500 hover:text-emerald-600 transition-all text-xs font-black">PREVIOUS</button>
+                <button class="px-5 py-3 bg-white border border-slate-200 rounded-xl text-slate-400 hover:border-emerald-500 hover:text-emerald-600 transition-all text-xs font-black">NEXT</button>
             </div>
         </div>
     </div>
