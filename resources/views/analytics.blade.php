@@ -2,121 +2,103 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 animate-fade-up">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 animate-block-up">
         <div>
-            <h1 class="text-3xl font-bold heading-font text-slate-900">Analytics & Insights</h1>
-            <p class="text-slate-500 mt-1">Deep dive into your retail performance and AI-driven trends.</p>
+            <h1 class="text-4xl font-black heading-font text-slate-900 tracking-tight">Intelligence <span class="text-emerald-600">& Insights</span></h1>
+            <p class="text-slate-500 mt-1 font-medium">Deep diving into your retail ecosystem performance.</p>
         </div>
-        <div class="mt-4 md:mt-0">
-            <button class="flex items-center space-x-2 px-6 py-2.5 bg-indigo-600 rounded-2xl text-sm font-bold text-white hover:bg-indigo-700 transition-all hover:shadow-lg hover:shadow-indigo-200">
-                <i data-lucide="download" class="w-4 h-4"></i>
-                <span>Generate Report</span>
-            </button>
+        <div class="mt-8 md:mt-0 px-8 py-4 bg-emerald-50 rounded-2xl border-2 border-emerald-100 flex items-center space-x-6">
+            <div class="text-right">
+                <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest">Growth Index</p>
+                <p class="text-2xl font-black text-emerald-900 leading-none">94.2</p>
+            </div>
+            <div class="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-100">
+                <i data-lucide="trending-up" class="w-6 h-6"></i>
+            </div>
         </div>
     </div>
 
-    <!-- Top Row Charts -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <div class="glass-card p-8 rounded-[32px] animate-fade-up stagger-1">
-            <div class="flex justify-between items-center mb-8">
-                <h3 class="text-xl font-bold text-slate-900 heading-font">Sales Category</h3>
-                <span class="text-xs font-black text-indigo-500 uppercase">Q1 2026</span>
-            </div>
-            <div class="h-64 relative">
+    <!-- Analytics Charts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+        <div class="block-card p-10 animate-block-up" style="animation-delay: 0.1s">
+            <h3 class="text-2xl font-black text-slate-900 heading-font mb-10 flex items-center justify-between">
+                Sales by <span class="text-emerald-600 ml-2">Category</span>
+                <i data-lucide="pie-chart" class="w-6 h-6 text-slate-300"></i>
+            </h3>
+            <div class="h-80">
                 <canvas id="categoryChart"></canvas>
             </div>
         </div>
-        <div class="glass-card p-8 rounded-[32px] animate-fade-up stagger-2">
-            <div class="flex justify-between items-center mb-8">
-                <h3 class="text-xl font-bold text-slate-900 heading-font">Traffic Density</h3>
-                <div class="flex space-x-1">
-                    <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
-                </div>
-            </div>
-            <div class="h-64">
+        <div class="block-card p-10 animate-block-up" style="animation-delay: 0.2s">
+            <h3 class="text-2xl font-black text-slate-900 heading-font mb-10 flex items-center justify-between">
+                Traffic <span class="text-emerald-600 ml-2">Density</span>
+                <i data-lucide="map" class="w-6 h-6 text-slate-300"></i>
+            </h3>
+            <div class="h-80">
                 <canvas id="trafficChart"></canvas>
             </div>
         </div>
     </div>
 
-    <!-- Bottom Row Charts -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-2 glass-card p-8 rounded-[32px] animate-fade-up stagger-3">
-            <h3 class="text-xl font-bold text-slate-900 mb-8 heading-font">Profit Margin Trend</h3>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2 block-card p-10 animate-block-up" style="animation-delay: 0.3s">
+            <h3 class="text-2xl font-black text-slate-900 heading-font mb-10 flex items-center justify-between">
+                Profit <span class="text-emerald-600 ml-2">Margin Trend</span>
+                <i data-lucide="line-chart" class="w-6 h-6 text-slate-300"></i>
+            </h3>
             <div class="h-80">
                 <canvas id="profitChart"></canvas>
             </div>
         </div>
-        <div class="glass-card p-8 rounded-[32px] animate-fade-up stagger-4 flex flex-col items-center justify-center text-center">
-            <div class="relative mb-6">
-                <div class="absolute inset-0 bg-emerald-400 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-                <div class="relative w-24 h-24 rounded-full bg-gradient-to-tr from-emerald-400 to-emerald-600 text-white flex items-center justify-center text-4xl shadow-xl shadow-emerald-100">
-                    <i data-lucide="smile" class="w-12 h-12"></i>
-                </div>
+        <div class="block-card p-10 animate-block-up flex flex-col items-center justify-center text-center bg-slate-900 relative overflow-hidden" style="animation-delay: 0.4s">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-600/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+            <div class="w-24 h-24 bg-emerald-500 rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-emerald-500/50 border-4 border-emerald-400">
+                <i data-lucide="smile" class="text-white w-12 h-12"></i>
             </div>
-            <h4 class="text-2xl font-bold text-slate-900">92% Happiness</h4>
-            <p class="text-sm text-slate-500 mt-2">Overall customer sentiment is <span class="text-emerald-600 font-bold uppercase tracking-tighter">Excellent</span></p>
-            
-            <div class="mt-10 space-y-5 w-full">
-                <div class="flex flex-col space-y-2">
-                    <div class="flex justify-between text-[10px] font-black uppercase text-slate-400">
-                        <span>Sentiment Score</span>
-                        <span class="text-slate-900">92/100</span>
-                    </div>
-                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-emerald-400 to-emerald-600 h-full rounded-full" style="width: 92%"></div>
-                    </div>
-                </div>
-            </div>
+            <h3 class="text-3xl font-black text-white heading-font mb-2">92%</h3>
+            <p class="text-[11px] font-black text-emerald-400 uppercase tracking-[0.2em] mb-8">Customer Happiness</p>
+            <p class="text-sm font-bold text-slate-400 max-w-[200px]">Based on recent AI analysis of 450+ feedbacks.</p>
         </div>
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Chart Style Defaults for Block Look
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.font.weight = '700';
+        Chart.defaults.color = '#94a3b8';
+
         // Category Chart
-        new Chart(document.getElementById('categoryChart').getContext('2d'), {
+        new Chart(document.getElementById('categoryChart'), {
             type: 'doughnut',
             data: {
-                labels: ['Electronics', 'Apparel', 'Home', 'Groceries'],
+                labels: ['Electronics', 'Apparel', 'Essentials', 'Others'],
                 datasets: [{
-                    data: [42, 28, 18, 12],
-                    backgroundColor: ['#6366f1', '#a855f7', '#3b82f6', '#f59e0b'],
+                    data: [45, 25, 20, 10],
+                    backgroundColor: ['#059669', '#10b981', '#34d399', '#6ee7b7'],
                     borderWidth: 8,
-                    borderColor: 'rgba(255,255,255,0)',
-                    hoverOffset: 15
+                    borderColor: '#ffffff',
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: '75%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            usePointStyle: true,
-                            padding: 30,
-                            font: { size: 12, weight: 'bold' }
-                        }
-                    }
-                }
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20 } } },
+                cutout: '75%'
             }
         });
 
         // Traffic Chart
-        new Chart(document.getElementById('trafficChart').getContext('2d'), {
+        new Chart(document.getElementById('trafficChart'), {
             type: 'bar',
             data: {
-                labels: ['9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM'],
+                labels: ['9am', '12pm', '3pm', '6pm', '9pm'],
                 datasets: [{
-                    label: 'Customers',
-                    data: [45, 120, 180, 150, 210, 240, 110],
-                    backgroundColor: '#6366f1',
+                    label: 'Visitors',
+                    data: [120, 450, 380, 520, 290],
+                    backgroundColor: '#059669',
                     borderRadius: 12,
-                    hoverBackgroundColor: '#4f46e5'
                 }]
             },
             options: {
@@ -124,39 +106,27 @@
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
-                    y: { 
-                        beginAtZero: true, 
-                        grid: { display: false },
-                        ticks: { display: false }
-                    },
-                    x: { 
-                        grid: { display: false },
-                        ticks: { font: { weight: 'bold' }, color: '#94a3b8' }
-                    }
+                    y: { beginAtZero: true, grid: { display: false } },
+                    x: { grid: { display: false } }
                 }
             }
         });
 
         // Profit Chart
-        const profitCtx = document.getElementById('profitChart').getContext('2d');
-        const profitGradient = profitCtx.createLinearGradient(0, 0, 0, 400);
-        profitGradient.addColorStop(0, 'rgba(168, 85, 247, 0.4)');
-        profitGradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
-
-        new Chart(profitCtx, {
+        new Chart(document.getElementById('profitChart'), {
             type: 'line',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
                 datasets: [{
                     label: 'Margin',
                     data: [24, 26, 23, 28, 32, 29],
-                    borderColor: '#a855f7',
-                    borderWidth: 5,
-                    fill: true,
-                    backgroundColor: profitGradient,
-                    tension: 0.5,
-                    pointRadius: 0,
-                    pointHoverRadius: 10,
+                    borderColor: '#059669',
+                    borderWidth: 6,
+                    fill: false,
+                    tension: 0, // Sharp lines for block style
+                    pointRadius: 8,
+                    pointBackgroundColor: '#fff',
+                    pointBorderWidth: 4,
                 }]
             },
             options: {
@@ -164,11 +134,7 @@
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
-                    y: { 
-                        beginAtZero: false,
-                        grid: { color: 'rgba(0,0,0,0.03)' },
-                        ticks: { font: { weight: 'bold' }, color: '#94a3b8', callback: v => v + '%' }
-                    },
+                    y: { beginAtZero: false, grid: { color: '#f1f5f9' }, ticks: { callback: v => v + '%' } },
                     x: { grid: { display: false } }
                 }
             }
