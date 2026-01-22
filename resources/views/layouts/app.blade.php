@@ -105,40 +105,40 @@
 <body class="antialiased">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        <aside class="w-72 prof-sidebar h-full flex flex-col z-20 shrink-0">
-            <div class="p-10">
-                <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-forest-dark bg-[linear-gradient(135deg,#064e3b_0%,#059669_100%)] rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-100">
-                        <i data-lucide="leaf" class="text-white w-6 h-6"></i>
+        <aside class="w-64 prof-sidebar h-full flex flex-col z-20 shrink-0">
+            <div class="p-8">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-forest-dark bg-[linear-gradient(135deg,#064e3b_0%,#059669_100%)] rounded-xl flex items-center justify-center shadow-lg shadow-emerald-100">
+                        <i data-lucide="leaf" class="text-white w-5 h-5"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-black heading-font tracking-tight text-slate-900 leading-none">MINT</span>
-                        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-600 mt-0.5">Retail Solutions</p>
+                        <span class="text-xl font-black heading-font tracking-tight text-slate-900 leading-none">MINT</span>
+                        <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-emerald-600 mt-0.5">Retail Solutions</p>
                     </div>
                 </div>
             </div>
 
-            <nav class="flex-1 px-6 space-y-2 mt-4">
-                <a href="/" class="flex items-center space-x-4 px-5 py-4 rounded-2xl text-[15px] nav-link {{ request()->is('/') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-                    <span>Dashboard</span>
+            <nav class="flex-1 px-4 space-y-1 mt-4">
+                <a href="/" class="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-sm nav-link {{ request()->is('/') ? 'nav-link-active' : '' }}">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    <span class="font-medium">Dashboard</span>
                 </a>
-                <a href="/inventory" class="flex items-center space-x-4 px-5 py-4 rounded-2xl text-[15px] nav-link {{ request()->is('inventory') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="package" class="w-5 h-5"></i>
-                    <span>Inventory Hub</span>
+                <a href="/inventory" class="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-sm nav-link {{ request()->is('inventory') ? 'nav-link-active' : '' }}">
+                    <i data-lucide="package" class="w-4 h-4"></i>
+                    <span class="font-medium">Inventory</span>
                 </a>
-                <a href="/sales" class="flex items-center space-x-4 px-5 py-4 rounded-2xl text-[15px] nav-link {{ request()->is('sales') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                    <span>POS Terminal</span>
+                <a href="/sales" class="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-sm nav-link {{ request()->is('sales') ? 'nav-link-active' : '' }}">
+                    <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                    <span class="font-medium">POS Terminal</span>
                 </a>
-                <a href="/analytics" class="flex items-center space-x-4 px-5 py-4 rounded-2xl text-[15px] nav-link {{ request()->is('analytics') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="pie-chart" class="w-5 h-5"></i>
-                    <span>Deep Analytics</span>
+                <a href="/analytics" class="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-sm nav-link {{ request()->is('analytics') ? 'nav-link-active' : '' }}">
+                    <i data-lucide="pie-chart" class="w-4 h-4"></i>
+                    <span class="font-medium">Analytics</span>
                 </a>
             </nav>
 
-            <div class="p-8 mt-auto">
-                <div class="bg-forest-light rounded-3xl p-6 border border-emerald-100 relative overflow-hidden group">
+            <div class="p-6 mt-auto">
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 relative overflow-hidden group">
                     <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-emerald-500/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
                     <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-2">Live Statistics</p>
                     <div class="flex items-center justify-between">
