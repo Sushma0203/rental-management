@@ -26,7 +26,7 @@
                 <i data-lucide="dollar-sign" class="w-7 h-7"></i>
             </div>
             <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Revenue</p>
-            <h3 class="text-3xl font-black text-slate-900 tracking-tight">$42,910</h3>
+            <h3 class="text-3xl font-black text-slate-900 tracking-tight">Rs. 4,29,100</h3>
             <div class="mt-4 flex items-center text-emerald-600 text-sm font-bold">
                 <i data-lucide="trending-up" class="w-4 h-4 mr-1"></i>
                 <span>+12.5%</span>
@@ -62,7 +62,7 @@
                 <i data-lucide="credit-card" class="w-7 h-7"></i>
             </div>
             <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1">Avg. Order</p>
-            <h3 class="text-3xl font-black text-slate-900 tracking-tight">$51.20</h3>
+            <h3 class="text-3xl font-black text-slate-900 tracking-tight">Rs. 5,120</h3>
             <div class="mt-4 flex items-center text-emerald-600 text-sm font-bold">
                 <i data-lucide="trending-up" class="w-4 h-4 mr-1"></i>
                 <span>+5.1%</span>
@@ -160,7 +160,7 @@
                             </div>
                         </td>
                         <td class="px-10 py-6 text-sm font-bold text-slate-600">Wireless Headphones</td>
-                        <td class="px-10 py-6 text-sm font-black text-slate-900 tracking-tight">$129.00</td>
+                        <td class="px-10 py-6 text-sm font-black text-slate-900 tracking-tight">Rs. 12,900</td>
                         <td class="px-10 py-6">
                             <span class="px-4 py-1.5 bg-emerald-500 text-white text-[10px] font-black uppercase rounded-lg shadow-lg shadow-emerald-100">Completed</span>
                         </td>
@@ -201,7 +201,7 @@
                     y: { 
                         beginAtZero: true, 
                         grid: { display: false },
-                        ticks: { font: { weight: 'bold' }, color: '#94a3b8', callback: v => '$' + v }
+                        ticks: { font: { weight: 'bold' }, color: '#94a3b8', callback: v => 'Rs. ' + v }
                     },
                     x: { 
                         grid: { display: false }, 

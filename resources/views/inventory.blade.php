@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-10 py-6 text-lg font-black text-slate-900 tracking-tight">$348.00</td>
+                        <td class="px-10 py-6 text-lg font-black text-slate-900 tracking-tight">Rs. 34,800</td>
                         <td class="px-10 py-6">
                             <div class="flex flex-col space-y-2 w-40">
                                 <div class="flex justify-between items-center text-[10px] font-black uppercase text-slate-400 tracking-widest">

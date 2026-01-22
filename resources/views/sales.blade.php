@@ -37,7 +37,7 @@
                             <p class="font-black text-slate-900 group-hover:text-emerald-600 transition-colors">iPhone 15 Pro</p>
                             <p class="text-[10px] font-black uppercase text-slate-400 mt-1 tracking-widest">Titanium • 256GB</p>
                         </div>
-                        <span class="text-xl font-black text-emerald-600">$999</span>
+                        <span class="text-xl font-black text-emerald-600">Rs. 1,45,000</span>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                             <p class="font-black text-slate-900 group-hover:text-emerald-600 transition-colors">AirPods Pro</p>
                             <p class="text-[10px] font-black uppercase text-slate-400 mt-1 tracking-widest">Noise Cancelling</p>
                         </div>
-                        <span class="text-xl font-black text-emerald-600">$249</span>
+                        <span class="text-xl font-black text-emerald-600">Rs. 25,000</span>
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
                             <p class="font-black text-slate-900 group-hover:text-emerald-600 transition-colors">Apple Watch Ultra</p>
                             <p class="text-[10px] font-black uppercase text-slate-400 mt-1 tracking-widest">Titanium Case</p>
                         </div>
-                        <span class="text-xl font-black text-emerald-600">$799</span>
+                        <span class="text-xl font-black text-emerald-600">Rs. 1,20,000</span>
                     </div>
                 </div>
             </div>
@@ -94,10 +94,10 @@
                             </div>
                             <div>
                                 <p class="text-base font-black text-slate-900 leading-tight">iPhone 15 Pro</p>
-                                <p class="text-xs font-black text-slate-400 mt-1">$999.00 × 1</p>
+                                <p class="text-xs font-black text-slate-400 mt-1">Rs. 1,45,000 × 1</p>
                             </div>
                         </div>
-                        <p class="text-lg font-black text-slate-900">$999</p>
+                        <p class="text-lg font-black text-slate-900">Rs. 1,45,000</p>
                     </div>
 
                     <div class="flex items-center justify-between group">
@@ -107,26 +107,26 @@
                             </div>
                             <div>
                                 <p class="text-base font-black text-slate-900 leading-tight">AirPods Pro</p>
-                                <p class="text-xs font-black text-slate-400 mt-1">$249.00 × 2</p>
+                                <p class="text-xs font-black text-slate-400 mt-1">Rs. 12,500 × 2</p>
                             </div>
                         </div>
-                        <p class="text-lg font-black text-slate-900">$498</p>
+                        <p class="text-lg font-black text-slate-900">Rs. 25,000</p>
                     </div>
                 </div>
 
                 <div class="p-10 bg-slate-900 space-y-8 shrink-0 relative">
                     <div class="flex justify-between text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
                         <span>Subtotal</span>
-                        <span class="text-white">$1,497.00</span>
+                        <span class="text-white">Rs. 1,70,000</span>
                     </div>
                     <div class="flex justify-between text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
-                        <span>Service Tax</span>
-                        <span class="text-white">$119.76</span>
+                        <span>VAT (13%)</span>
+                        <span class="text-white">Rs. 22,100</span>
                     </div>
                     <div class="h-0.5 bg-slate-800"></div>
                     <div class="flex justify-between items-end">
                         <span class="text-sm font-black text-slate-400 uppercase tracking-widest">Total Payable</span>
-                        <span class="text-4xl font-black text-emerald-400 tracking-tighter leading-none">$1,616.76</span>
+                        <span class="text-4xl font-black text-emerald-400 tracking-tighter leading-none">Rs. 1,92,100</span>
                     </div>
 
                     <button class="w-full py-6 bg-emerald-500 text-white rounded-2xl text-xl font-black shadow-2xl shadow-emerald-900/40 hover:bg-emerald-400 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center space-x-4 group overflow-hidden">
