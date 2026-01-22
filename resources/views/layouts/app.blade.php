@@ -14,12 +14,13 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-    <style>
         :root {
             --forest-primary: #059669;
             --forest-dark: #064e3b;
             --forest-light: #ecfdf5;
             --slate-base: #f8fafc;
+            --sidebar-expanded: 260px;
+            --sidebar-collapsed: 88px;
             --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 10px -2px rgba(0, 0, 0, 0.03);
             --heading-font: 'Outfit', sans-serif;
             --body-font: 'Inter', sans-serif;
@@ -30,6 +31,7 @@
             font-family: var(--body-font);
             color: #334155;
             -webkit-font-smoothing: antialiased;
+            overflow: hidden;
         }
 
         .heading-font { font-family: var(--heading-font); }
@@ -49,16 +51,35 @@
             border-color: #cbd5e1;
         }
 
-        /* Sidebar Styling */
+        /* Collapsible Sidebar Logic */
         .prof-sidebar {
+            width: var(--sidebar-expanded);
             background: #ffffff;
             border-right: 1px solid #e2e8f0;
+            transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .prof-sidebar.collapsed {
+            width: var(--sidebar-collapsed);
         }
 
         .nav-link {
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             position: relative;
             color: #64748b;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .collapsed .nav-link {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+            width: 52px;
+            height: 52px;
+            margin: 0 auto;
         }
 
         .nav-link:hover {
@@ -72,15 +93,58 @@
             font-weight: 700;
         }
 
-        .nav-link-active::after {
-            content: '';
+        .nav-label {
+            transition: opacity 0.2s ease;
+            margin-left: 0.75rem;
+        }
+
+        .collapsed .nav-label, .collapsed .sidebar-header-text, .collapsed .sidebar-footer {
+            display: none !important;
+        }
+
+        .collapsed .sidebar-brand-icon {
+            margin: 0 auto;
+        }
+
+        /* Toggle Button Styling */
+        .sidebar-toggle {
             position: absolute;
-            right: 0;
-            top: 25%;
-            height: 50%;
-            width: 4px;
-            background: var(--forest-primary);
-            border-radius: 4px 0 0 4px;
+            right: -12px;
+            top: 40px;
+            width: 24px;
+            height: 24px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 30;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, border-color 0.2s ease;
+        }
+        
+        .sidebar-toggle:hover {
+            border-color: var(--forest-primary);
+        }
+
+        .collapsed .sidebar-toggle i {
+            transform: rotate(180deg);
+        }
+
+        /* Main Content Adjustments */
+        main {
+            transition: padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
 
         /* Custom Scrollbar */
@@ -91,27 +155,23 @@
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
     </style>
 </head>
 <body class="antialiased">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        <aside class="w-64 prof-sidebar h-full flex flex-col z-20 shrink-0">
-            <div class="p-8">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-forest-dark bg-[linear-gradient(135deg,#064e3b_0%,#059669_100%)] rounded-xl flex items-center justify-center shadow-lg shadow-emerald-100">
+        <aside id="sidebar" class="prof-sidebar h-full flex flex-col z-20 shrink-0">
+            <!-- Toggle Button -->
+            <div class="sidebar-toggle" onclick="toggleSidebar()">
+                <i data-lucide="chevron-left" class="w-3 h-3 text-slate-400"></i>
+            </div>
+
+            <div class="p-8 pb-10">
+                <div class="flex items-center space-x-3 sidebar-brand-icon">
+                    <div class="w-10 h-10 bg-forest-dark bg-[linear-gradient(135deg,#064e3b_0%,#059669_100%)] rounded-xl flex items-center justify-center shadow-lg shadow-emerald-100 shrink-0">
                         <i data-lucide="leaf" class="text-white w-5 h-5"></i>
                     </div>
-                    <div>
+                    <div class="sidebar-header-text">
                         <span class="text-xl font-black heading-font tracking-tight text-slate-900 leading-none">MINT</span>
                         <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-emerald-600 mt-0.5">Retail Solutions</p>
                     </div>
@@ -119,34 +179,29 @@
             </div>
 
             <nav class="flex-1 px-4 space-y-1 mt-4">
-                <a href="/" class="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-sm nav-link {{ request()->is('/') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
-                    <span class="font-medium">Dashboard</span>
+                <a href="/" class="nav-link px-4 py-3.5 rounded-xl text-sm {{ request()->is('/') ? 'nav-link-active' : '' }}" title="Dashboard">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
+                    <span class="nav-label font-medium">Dashboard</span>
                 </a>
-                <a href="/inventory" class="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-sm nav-link {{ request()->is('inventory') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="package" class="w-4 h-4"></i>
-                    <span class="font-medium">Inventory</span>
+                <a href="/inventory" class="nav-link px-4 py-3.5 rounded-xl text-sm {{ request()->is('inventory') ? request()->is('inventory') ? 'nav-link-active' : '' : '' }}" title="Inventory">
+                    <i data-lucide="package" class="w-5 h-5 shrink-0"></i>
+                    <span class="nav-label font-medium">Inventory</span>
                 </a>
-                <a href="/sales" class="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-sm nav-link {{ request()->is('sales') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                    <span class="font-medium">POS Terminal</span>
+                <a href="/sales" class="nav-link px-4 py-3.5 rounded-xl text-sm {{ request()->is('sales') ? 'nav-link-active' : '' }}" title="Checkout">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 shrink-0"></i>
+                    <span class="nav-label font-medium">POS Terminal</span>
                 </a>
-                <a href="/analytics" class="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-sm nav-link {{ request()->is('analytics') ? 'nav-link-active' : '' }}">
-                    <i data-lucide="pie-chart" class="w-4 h-4"></i>
-                    <span class="font-medium">Analytics</span>
+                <a href="/analytics" class="nav-link px-4 py-3.5 rounded-xl text-sm {{ request()->is('analytics') ? 'nav-link-active' : '' }}" title="Analytics">
+                    <i data-lucide="pie-chart" class="w-5 h-5 shrink-0"></i>
+                    <span class="nav-label font-medium">Analytics</span>
                 </a>
             </nav>
 
-            <div class="p-6 mt-auto">
+            <div class="p-6 mt-auto sidebar-footer">
                 <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 relative overflow-hidden group">
-                    <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-emerald-500/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                    <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-2">Live Statistics</p>
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-bold text-slate-500">Node Status</p>
-                            <p class="text-sm font-black text-slate-800">Operational</p>
-                        </div>
-                        <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                        <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest">System Live</p>
                     </div>
                 </div>
             </div>
@@ -194,6 +249,22 @@
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Sidebar Toggle Logic
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('collapsed');
+            
+            // Save preference
+            localStorage.setItem('sidebar-collapsed', sidebar.classList.contains('collapsed'));
+        }
+
+        // Apply preference on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('sidebar-collapsed') === 'true') {
+                document.getElementById('sidebar').classList.add('collapsed');
+            }
+        });
     </script>
 </body>
 </html>
