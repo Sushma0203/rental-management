@@ -19,9 +19,9 @@
             --forest-dark: #064e3b;
             --forest-light: #ecfdf5;
             --slate-base: #f8fafc;
-            --sidebar-expanded: 260px;
-            --sidebar-collapsed: 88px;
-            --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 10px -2px rgba(0, 0, 0, 0.03);
+            --mint-btn: #d1fae5;
+            --sidebar-expanded: 280px;
+            --sidebar-collapsed: 90px;
             --heading-font: 'Outfit', sans-serif;
             --body-font: 'Inter', sans-serif;
         }
@@ -41,22 +41,16 @@
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 1.5rem;
-            box-shadow: var(--card-shadow);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .prof-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
-            border-color: #cbd5e1;
-        }
-
-        /* Collapsible Sidebar Logic */
+        /* Block Button Sidebar */
         .prof-sidebar {
             width: var(--sidebar-expanded);
             background: #ffffff;
             border-right: 1px solid #e2e8f0;
-            transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
 
@@ -65,48 +59,51 @@
         }
 
         .nav-link {
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             color: #64748b;
             display: flex;
             align-items: center;
-            white-space: nowrap;
+            padding: 1rem 1.25rem;
+            margin: 0.5rem 1rem;
+            border-radius: 1rem;
+            background: transparent;
+            border: 1px solid transparent;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            background: var(--mint-btn);
+            color: var(--forest-dark);
+            transform: translateX(4px);
+            border-color: #a7f3d0;
+        }
+
+        .nav-link-active {
+            background: var(--forest-primary) !important;
+            color: white !important;
+            box-shadow: 0 8px 20px -4px rgba(5, 150, 105, 0.4);
+            transform: scale(1.02);
+            border: 1px solid var(--forest-dark);
         }
 
         .collapsed .nav-link {
             justify-content: center;
-            padding-left: 0;
-            padding-right: 0;
-            width: 52px;
-            height: 52px;
-            margin: 0 auto;
-        }
-
-        .nav-link:hover {
-            color: var(--forest-primary);
-            background: var(--forest-light);
-        }
-
-        .nav-link-active {
-            color: var(--forest-primary) !important;
-            background: var(--forest-light);
-            font-weight: 700;
+            padding: 1rem 0;
+            margin: 0.5rem 0.75rem;
         }
 
         .nav-label {
             transition: opacity 0.2s ease;
             margin-left: 0.75rem;
+            font-size: 0.875rem;
         }
 
         .collapsed .nav-label, .collapsed .sidebar-header-text, .collapsed .sidebar-footer {
             display: none !important;
         }
 
-        .collapsed .sidebar-brand-icon {
-            margin: 0 auto;
-        }
-
-        /* Toggle Button Styling */
+        /* Toggle Button */
         .sidebar-toggle {
             position: absolute;
             right: -12px;
@@ -122,39 +119,16 @@
             cursor: pointer;
             z-index: 30;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, border-color 0.2s ease;
-        }
-        
-        .sidebar-toggle:hover {
-            border-color: var(--forest-primary);
         }
 
-        .collapsed .sidebar-toggle i {
-            transform: rotate(180deg);
-        }
-
-        /* Main Content Adjustments */
-        main {
-            transition: padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .collapsed .sidebar-toggle i { transform: rotate(180deg); }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--slate-base); }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
     </style>
 </head>
 <body class="antialiased">
@@ -178,22 +152,22 @@
                 </div>
             </div>
 
-            <nav class="flex-1 px-4 space-y-1 mt-4">
-                <a href="/" class="nav-link px-4 py-3.5 rounded-xl text-sm {{ request()->is('/') ? 'nav-link-active' : '' }}" title="Dashboard">
+            <nav class="flex-1 space-y-2 mt-4">
+                <a href="/" class="nav-link {{ request()->is('/') ? 'nav-link-active' : '' }}" title="Dashboard">
                     <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
-                    <span class="nav-label font-medium">Dashboard</span>
+                    <span class="nav-label">Dashboard</span>
                 </a>
-                <a href="/inventory" class="nav-link px-4 py-3.5 rounded-xl text-sm {{ request()->is('inventory') ? request()->is('inventory') ? 'nav-link-active' : '' : '' }}" title="Inventory">
+                <a href="/inventory" class="nav-link {{ request()->is('inventory') ? 'nav-link-active' : '' }}" title="Inventory">
                     <i data-lucide="package" class="w-5 h-5 shrink-0"></i>
-                    <span class="nav-label font-medium">Inventory</span>
+                    <span class="nav-label">Inventory</span>
                 </a>
-                <a href="/sales" class="nav-link px-4 py-3.5 rounded-xl text-sm {{ request()->is('sales') ? 'nav-link-active' : '' }}" title="Checkout">
+                <a href="/sales" class="nav-link {{ request()->is('sales') ? 'nav-link-active' : '' }}" title="Checkout">
                     <i data-lucide="shopping-cart" class="w-5 h-5 shrink-0"></i>
-                    <span class="nav-label font-medium">POS Terminal</span>
+                    <span class="nav-label">POS Terminal</span>
                 </a>
-                <a href="/analytics" class="nav-link px-4 py-3.5 rounded-xl text-sm {{ request()->is('analytics') ? 'nav-link-active' : '' }}" title="Analytics">
+                <a href="/analytics" class="nav-link {{ request()->is('analytics') ? 'nav-link-active' : '' }}" title="Analytics">
                     <i data-lucide="pie-chart" class="w-5 h-5 shrink-0"></i>
-                    <span class="nav-label font-medium">Analytics</span>
+                    <span class="nav-label">Analytics</span>
                 </a>
             </nav>
 
