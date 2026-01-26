@@ -30,7 +30,7 @@
         body {
             background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
             font-family: var(--body-font);
-            color: #334155;
+            color: #233145;
             overflow: hidden;
         }
 
@@ -68,7 +68,7 @@
             padding: 1rem 1.25rem;
             margin: 0.5rem 1rem;
             border-radius: 1rem;
-            color: #64748b;
+            color: #4d617e;
             font-weight: 600;
             position: relative;
             transition: all 0.2s ease;
@@ -83,7 +83,7 @@
         .nav-link-active {
             background: var(--forest-primary);
             color: white;
-            box-shadow: 0 8px 20px -4px rgba(5,150,105,0.4);
+            box-shadow: 0 8px 20px -4px rgba(5, 112, 78, 0.4);
         }
 
         .nav-link-active::before {
