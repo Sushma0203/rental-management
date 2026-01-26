@@ -28,10 +28,21 @@
         }
 
         body {
-            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            background: url('/img/download.jpeg') center center / cover no-repeat fixed;
             font-family: var(--body-font);
             color: #334155;
             overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(248, 250, 252, 0.85);
+            z-index: -1;
         }
 
         /* Card */
