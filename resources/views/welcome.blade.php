@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto py-2">
+<div class="max-w-7xl mx-auto py-12">
     <!-- Clean Header -->
-    <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 animate-fade-in">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-16 animate-fade-in">
         <div>
-            <h1 class="text-3xl font-black heading-font text-slate-900 tracking-tight">Dashboard <span class="text-emerald-600">Core</span></h1>
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Operational Summary • {{ date('M d, Y') }}</p>
+            <h1 class="text-3xl font-black heading-font text-white tracking-tight">Dashboard <span class="text-emerald-300">Core</span></h1>
+            <p class="text-xs font-bold text-white/80 uppercase tracking-widest mt-1">Operational Summary • {{ date('M d, Y') }}</p>
         </div>
         <div class="mt-6 md:mt-0 flex items-center space-x-4">
             <div class="text-right mr-4">
-                <span id="live-clock" class="text-xl font-bold font-mono text-slate-700">00:00:00</span>
+                <span id="live-clock" class="text-xl font-bold font-mono text-white">00:00:00</span>
             </div>
-            <button class="bg-slate-900 text-white px-6 py-3 rounded-xl text-xs font-bold hover:bg-emerald-600 transition-all shadow-lg shadow-slate-100 flex items-center space-x-2">
+            <button class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-xs font-bold hover:bg-white/30 transition-all shadow-lg flex items-center space-x-2">
                 <i data-lucide="plus" class="w-4 h-4"></i>
                 <span>NEW ENTRY</span>
             </button>
@@ -20,8 +20,8 @@
     </div>
 
     <!-- Stats Grid (Compact) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="prof-card p-6 animate-fade-in" style="animation-delay: 0.1s">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div class="prof-card p-10 animate-fade-in" style="animation-delay: 0.1s">
             <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Revenue</p>
             <div class="flex items-end justify-between">
                 <h3 class="text-2xl font-black text-slate-900">Rs. 4.29L</h3>
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="prof-card p-6 animate-fade-in" style="animation-delay: 0.2s">
+        <div class="prof-card p-10 animate-fade-in" style="animation-delay: 0.2s">
             <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Orders</p>
             <div class="flex items-end justify-between">
                 <h3 class="text-2xl font-black text-slate-900">842</h3>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="prof-card p-6 animate-fade-in" style="animation-delay: 0.3s">
+        <div class="prof-card p-10 animate-fade-in" style="animation-delay: 0.3s">
             <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Customers</p>
             <div class="flex items-end justify-between">
                 <h3 class="text-2xl font-black text-slate-900">1.2K</h3>
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="prof-card p-6 animate-fade-in" style="animation-delay: 0.4s">
+        <div class="prof-card p-10 animate-fade-in" style="animation-delay: 0.4s">
             <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Average</p>
             <div class="flex items-end justify-between">
                 <h3 class="text-2xl font-black text-slate-900">Rs. 5.1K</h3>
@@ -55,8 +55,8 @@
     </div>
 
     <!-- Analytics Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-        <div class="lg:col-span-2 prof-card p-8 animate-fade-in" style="animation-delay: 0.5s">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-20">
+        <div class="lg:col-span-2 prof-card p-12 animate-fade-in" style="animation-delay: 0.5s">
             <div class="flex items-center justify-between mb-8">
                 <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">Growth Curve</h3>
                 <div class="flex space-x-2">
@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        <div class="prof-card p-8 animate-fade-in" style="animation-delay: 0.6s">
+        <div class="prof-card p-12 animate-fade-in" style="animation-delay: 0.6s">
             <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-8">Stock Alerts</h3>
             <div class="space-y-6">
                 @php
@@ -97,7 +97,7 @@
 
     <!-- Minimalist Table -->
     <div class="prof-card overflow-hidden animate-fade-in" style="animation-delay: 0.7s">
-        <div class="p-8 border-b border-slate-50 flex items-center justify-between bg-white">
+        <div class="p-12 border-b border-slate-50 flex items-center justify-between bg-white">
             <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">Recent Activity</h3>
             <button class="text-[10px] font-black text-emerald-600 uppercase tracking-widest">View All</button>
         </div>

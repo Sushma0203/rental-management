@@ -33,25 +33,15 @@
             color: #334155;
             overflow: hidden;
         }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(248, 250, 252, 0.85);
-            z-index: -1;
-        }
 
         /* Card */
         .prof-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 1.5rem;
             border: 1px solid #e2e8f0;
             box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .prof-card:hover {
@@ -62,10 +52,26 @@
         /* Sidebar */
         .prof-sidebar {
             width: var(--sidebar-expanded);
-            background: white;
+            background: url('/img/download.jpeg') center center / cover no-repeat;
             border-right: 1px solid #e2e8f0;
             transition: width 0.3s ease;
             position: relative;
+        }
+        
+        .prof-sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 0;
+        }
+        
+        .prof-sidebar > * {
+            position: relative;
+            z-index: 1;
         }
 
         .prof-sidebar.collapsed {
@@ -237,31 +243,31 @@
     <main class="flex-1 flex flex-col overflow-hidden">
 
         <!-- Topbar -->
-        <header class="h-16 bg-white border-b flex items-center justify-between px-8">
+        <header class="h-16 bg-transparent border-b border-white/20 flex items-center justify-between px-8">
             <div class="relative">
-                <i data-lucide="search" class="absolute left-3 top-2.5 w-4 h-4 text-slate-400"></i>
+                <i data-lucide="search" class="absolute left-3 top-2.5 w-4 h-4 text-white/60"></i>
                 <input type="text" placeholder="Search inventory, sales..."
-                       class="pl-10 pr-4 py-2 rounded-lg bg-slate-100 focus:ring-2 focus:ring-emerald-500 text-sm">
+                       class="pl-10 pr-4 py-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:ring-2 focus:ring-white/50 text-sm text-white placeholder-white/60">
             </div>
 
             <div class="flex items-center gap-6">
-                <button class="relative">
+                <button class="relative text-white">
                     <i data-lucide="bell"></i>
                     <span class="absolute top-0 right-0 w-2 h-2 bg-rose-500 rounded-full"></span>
                 </button>
 
                 <div class="flex items-center gap-3">
                     <div class="text-right">
-                        <p class="text-sm font-semibold">Admin User</p>
-                        <p class="text-xs text-slate-500">Store Manager</p>
+                        <p class="text-sm font-semibold text-white">Admin User</p>
+                        <p class="text-xs text-white/70">Store Manager</p>
                     </div>
-                    <img src="https://ui-avatars.com/api/?name=Admin+User" class="w-10 h-10 rounded-xl">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User" class="w-10 h-10 rounded-xl border-2 border-white/30">
                 </div>
             </div>
         </header>
 
         <!-- Content -->
-        <div class="flex-1 overflow-y-auto p-8 animate-fade-in">
+        <div class="flex-1 overflow-y-auto p-20 animate-fade-in">
             @yield('content')
         </div>
 

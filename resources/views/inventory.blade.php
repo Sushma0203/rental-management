@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto py-4">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 animate-fade-in">
+<div class="max-w-7xl mx-auto py-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 animate-fade-in">
         <div>
-            <p class="text-sm font-bold text-emerald-600 uppercase tracking-[0.2em] mb-2">Inventory Intelligence</p>
-            <h1 class="text-5xl font-black heading-font text-slate-900 tracking-tight">Asset <span class="bg-[linear-gradient(135deg,#064e3b_0%,#059669_100%)] bg-clip-text text-transparent">Management</span></h1>
+            <p class="text-sm font-bold text-emerald-300 uppercase tracking-[0.2em] mb-2">Inventory Intelligence</p>
+            <h1 class="text-5xl font-black heading-font text-white tracking-tight">Asset <span class="text-emerald-300">Management</span></h1>
         </div>
         <div class="mt-8 md:mt-0 flex space-x-4">
-            <button class="flex items-center space-x-3 px-6 py-4 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-700 hover:border-emerald-500 transition-all">
-                <i data-lucide="filter" class="w-4 h-4 text-emerald-600"></i>
+            <button class="flex items-center space-x-3 px-6 py-4 bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl text-sm font-bold text-white hover:bg-white/30 transition-all">
+                <i data-lucide="filter" class="w-4 h-4 text-emerald-300"></i>
                 <span>Global Filter</span>
             </button>
-            <button class="flex items-center space-x-3 px-8 py-4 bg-slate-900 text-white rounded-2xl text-sm font-bold hover:bg-emerald-600 transition-all shadow-xl shadow-slate-100">
+            <button class="flex items-center space-x-3 px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-2xl text-sm font-bold hover:bg-white/30 transition-all shadow-xl">
                 <i data-lucide="plus" class="w-4 h-4"></i>
                 <span>Add New Asset</span>
             </button>
@@ -20,7 +20,7 @@
     </div>
 
     <!-- Stats Matrix -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
         <div class="prof-card p-10 flex items-center space-x-8 animate-fade-in" style="animation-delay: 0.1s">
             <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 shrink-0">
                 <i data-lucide="database" class="w-8 h-8"></i>

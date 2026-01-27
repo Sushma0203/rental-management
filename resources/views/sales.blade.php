@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="h-full flex flex-col -m-8">
+<div class="h-full flex flex-col -m-12">
     <div class="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden">
         <!-- Main Product Explorer -->
-        <div class="flex-1 flex flex-col min-w-0 bg-[#f8fafc] p-10 overflow-hidden animate-fade-in">
+        <div class="flex-1 flex flex-col min-w-0 p-10 overflow-hidden animate-fade-in">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 shrink-0">
                 <div>
-                    <h1 class="text-4xl font-black heading-font text-slate-900 tracking-tight">Point of <span class="text-emerald-600">Sale</span></h1>
-                    <p class="text-sm font-bold text-slate-400 mt-1 uppercase tracking-widest">Operator: <span class="text-slate-900">Admin_Terminal_01</span></p>
+                    <h1 class="text-4xl font-black heading-font text-white tracking-tight">Point of <span class="text-emerald-300">Sale</span></h1>
+                    <p class="text-sm font-bold text-white/80 mt-1 uppercase tracking-widest">Operator: <span class="text-white">Admin_Terminal_01</span></p>
                 </div>
                 <div class="mt-8 md:mt-0 relative w-full md:w-80">
                     <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300"></i>
@@ -17,13 +17,13 @@
             </div>
 
             <div class="mb-10 flex space-x-4 overflow-x-auto pb-4 shrink-0 no-scrollbar">
-                <button class="px-8 py-3.5 bg-slate-900 text-white rounded-2xl text-xs font-black tracking-widest shadow-xl shadow-slate-200 shrink-0">ALL ASSETS</button>
-                <button class="px-8 py-3.5 bg-white border border-slate-200 text-slate-500 rounded-2xl text-xs font-black tracking-widest shrink-0 hover:border-emerald-600 hover:text-emerald-600 transition-all">COMPUTERS</button>
-                <button class="px-8 py-3.5 bg-white border border-slate-200 text-slate-500 rounded-2xl text-xs font-black tracking-widest shrink-0 hover:border-emerald-600 hover:text-emerald-600 transition-all">WEARABLES</button>
-                <button class="px-8 py-3.5 bg-white border border-slate-200 text-slate-500 rounded-2xl text-xs font-black tracking-widest shrink-0 hover:border-emerald-600 hover:text-emerald-600 transition-all">PERIPHERALS</button>
+                <button class="px-8 py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-2xl text-xs font-black tracking-widest shadow-xl shrink-0">ALL ASSETS</button>
+                <button class="px-8 py-3.5 bg-white/10 backdrop-blur-sm border border-white/20 text-white/80 rounded-2xl text-xs font-black tracking-widest shrink-0 hover:bg-white/20 hover:text-white transition-all">COMPUTERS</button>
+                <button class="px-8 py-3.5 bg-white/10 backdrop-blur-sm border border-white/20 text-white/80 rounded-2xl text-xs font-black tracking-widest shrink-0 hover:bg-white/20 hover:text-white transition-all">WEARABLES</button>
+                <button class="px-8 py-3.5 bg-white/10 backdrop-blur-sm border border-white/20 text-white/80 rounded-2xl text-xs font-black tracking-widest shrink-0 hover:bg-white/20 hover:text-white transition-all">PERIPHERALS</button>
             </div>
 
-            <div class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10 pr-6">
+            <div class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-16 pr-6">
                 <!-- Product Card -->
                 <div class="prof-card p-6 flex flex-col group cursor-pointer active:scale-95 transition-all relative">
                     <div class="aspect-square bg-slate-50 rounded-2xl mb-6 flex items-center justify-center text-slate-300 relative overflow-hidden group-hover:bg-emerald-50 transition-colors">

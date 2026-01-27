@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto py-4">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 animate-fade-in">
+<div class="max-w-7xl mx-auto py-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 animate-fade-in">
         <div>
-            <p class="text-sm font-bold text-emerald-600 uppercase tracking-[0.2em] mb-2">Advanced Intelligence</p>
-            <h1 class="text-5xl font-black heading-font text-slate-900 tracking-tight">Business <span class="bg-[linear-gradient(135deg,#064e3b_0%,#059669_100%)] bg-clip-text text-transparent">Analytics</span></h1>
+            <p class="text-sm font-bold text-emerald-300 uppercase tracking-[0.2em] mb-2">Advanced Intelligence</p>
+            <h1 class="text-5xl font-black heading-font text-white tracking-tight">Business <span class="text-emerald-300">Analytics</span></h1>
         </div>
         <div class="mt-8 md:mt-0 px-8 py-5 prof-card rounded-[2rem] border-emerald-100 flex items-center space-x-8 bg-emerald-50/30">
             <div class="text-right border-r border-emerald-200 pr-8">
@@ -22,7 +22,7 @@
     </div>
 
     <!-- Analytics Charts -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
         <div class="prof-card p-10 animate-fade-in" style="animation-delay: 0.1s">
             <div class="flex justify-between items-center mb-10">
                 <h3 class="text-xl font-black text-slate-900 heading-font uppercase tracking-widest">Asset Category Split</h3>
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
         <div class="lg:col-span-2 prof-card p-10 animate-fade-in" style="animation-delay: 0.3s">
             <div class="flex justify-between items-center mb-10">
                 <h3 class="text-xl font-black text-slate-900 heading-font uppercase tracking-widest">Profit Variance Trend</h3>
