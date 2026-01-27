@@ -8,7 +8,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Icons & Charts -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -18,276 +18,260 @@
 
     <style>
         :root {
-            --forest-primary: #059669;
-            --forest-dark: #064e3b;
-            --forest-light: #ecfdf5;
-            --sidebar-expanded: 280px;
-            --sidebar-collapsed: 90px;
+            --emerald-primary: #10b981;
+            --emerald-dark: #059669;
+            --emerald-darker: #047857;
             --heading-font: 'Outfit', sans-serif;
             --body-font: 'Inter', sans-serif;
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: url('/img/download.jpeg') center center / cover no-repeat fixed;
             font-family: var(--body-font);
-            color: #334155;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        .heading-font {
+            font-family: var(--heading-font);
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Floating Card Style */
+        .prof-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 
+                0 20px 50px -12px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
             overflow: hidden;
         }
 
-        /* Card */
-        .prof-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 1.5rem;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .prof-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px -8px rgba(0,0,0,0.08);
-        }
-
-        /* Sidebar */
-        .prof-sidebar {
-            width: var(--sidebar-expanded);
-            background: url('/img/download.jpeg') center center / cover no-repeat;
-            border-right: 1px solid #e2e8f0;
-            transition: width 0.3s ease;
-            position: relative;
-        }
-        
-        .prof-sidebar::before {
+        .prof-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            opacity: 0.5;
+        }
+
+        .prof-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 30px 70px -15px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+
+        /* Top Navigation */
+        .top-nav {
             background: rgba(255, 255, 255, 0.95);
-            z-index: 0;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        
-        .prof-sidebar > * {
+
+        .nav-item {
             position: relative;
-            z-index: 1;
-        }
-
-        .prof-sidebar.collapsed {
-            width: var(--sidebar-collapsed);
-        }
-
-        .nav-link {
+            padding: 1rem 1.5rem;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-radius: 1rem;
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 1rem 1.25rem;
-            margin: 0.5rem 1rem;
-            border-radius: 1rem;
-            color: #64748b;
-            font-weight: 600;
-            position: relative;
-            transition: all 0.2s ease;
         }
 
-        .nav-link:hover {
-            background: #d1fae5;
-            color: var(--forest-dark);
-            transform: translateX(4px);
+        .nav-item:hover {
+            color: var(--emerald-dark);
+            background: rgba(16, 185, 129, 0.08);
         }
 
-        .nav-link-active {
-            background: var(--forest-primary);
+        .nav-item-active {
             color: white;
-            box-shadow: 0 8px 20px -4px rgba(5,150,105,0.4);
+            background: linear-gradient(135deg, var(--emerald-primary) 0%, var(--emerald-dark) 100%);
+            box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.4);
         }
 
-        .nav-link-active::before {
+        .nav-item-active::after {
             content: '';
             position: absolute;
-            left: -8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 60%;
-            background: white;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--emerald-primary);
             border-radius: 999px;
         }
 
-        /* Tooltip for collapsed */
-        .nav-link::after {
-            content: attr(title);
-            position: absolute;
-            left: 100%;
-            margin-left: 12px;
-            background: #0f172a;
-            color: white;
-            font-size: 12px;
-            padding: 6px 10px;
-            border-radius: 6px;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.2s ease;
-            white-space: nowrap;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .collapsed .nav-link:hover::after {
-            opacity: 1;
-        }
-
-        .collapsed .nav-label,
-        .collapsed .sidebar-header-text,
-        .collapsed .sidebar-footer {
-            display: none;
-        }
-
-        .collapsed .nav-link {
-            justify-content: center;
-        }
-
-        /* Toggle */
-        .sidebar-toggle {
-            position: absolute;
-            right: -12px;
-            top: 40px;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .sidebar-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .collapsed .sidebar-toggle i {
-            transform: rotate(180deg);
-        }
-
-        /* Animation */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .animate-fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
-        a, button { cursor: pointer; }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(241, 245, 249, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.5);
+            border-radius: 999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 116, 139, 0.7);
+        }
+
+        /* Utility */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 
 <body>
-<div class="flex h-screen">
+<div class="min-h-screen flex flex-col relative z-10">
 
-    <!-- Sidebar -->
-    <aside id="sidebar" class="prof-sidebar flex flex-col h-full shrink-0">
-        <div class="sidebar-toggle" onclick="toggleSidebar()">
-            <i data-lucide="chevron-left" class="w-3 h-3 text-slate-400"></i>
-        </div>
-
-        <div class="p-8">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <i data-lucide="leaf" class="text-white w-5 h-5"></i>
-                </div>
-                <div class="sidebar-header-text">
-                    <h1 class="text-2xl font-black font-[Outfit]">NIWAS</h1>
-                    <p class="text-xs uppercase tracking-widest text-emerald-600">Management Hub</p>
-                </div>
-            </div>
-        </div>
-
-        <nav class="flex-1">
-            <a href="/" class="nav-link {{ request()->is('/') ? 'nav-link-active' : '' }}" title="Dashboard">
-                <i data-lucide="layout-dashboard"></i>
-                <span class="nav-label">Dashboard</span>
-            </a>
-
-            <a href="/inventory" class="nav-link {{ request()->is('inventory') ? 'nav-link-active' : '' }}" title="Inventory">
-                <i data-lucide="package"></i>
-                <span class="nav-label">Inventory</span>
-            </a>
-
-            <a href="/sales" class="nav-link {{ request()->is('sales') ? 'nav-link-active' : '' }}" title="POS Terminal">
-                <i data-lucide="shopping-cart"></i>
-                <span class="nav-label">POS Terminal</span>
-            </a>
-
-            <a href="/analytics" class="nav-link {{ request()->is('analytics') ? 'nav-link-active' : '' }}" title="Analytics">
-                <i data-lucide="pie-chart"></i>
-                <span class="nav-label">Analytics</span>
-            </a>
-        </nav>
-
-        <div class="p-6 sidebar-footer">
-            <div class="bg-slate-50 p-4 rounded-xl border">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-                    <span class="text-xs font-bold text-emerald-600">System Live</span>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Main -->
-    <main class="flex-1 flex flex-col overflow-hidden">
-
-        <!-- Topbar -->
-        <header class="h-16 bg-transparent border-b border-white/20 flex items-center justify-between px-8">
-            <div class="relative">
-                <i data-lucide="search" class="absolute left-3 top-2.5 w-4 h-4 text-white/60"></i>
-                <input type="text" placeholder="Search inventory, sales..."
-                       class="pl-10 pr-4 py-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 focus:ring-2 focus:ring-white/50 text-sm text-white placeholder-white/60">
-            </div>
-
-            <div class="flex items-center gap-6">
-                <button class="relative text-white">
-                    <i data-lucide="bell"></i>
-                    <span class="absolute top-0 right-0 w-2 h-2 bg-rose-500 rounded-full"></span>
-                </button>
-
-                <div class="flex items-center gap-3">
-                    <div class="text-right">
-                        <p class="text-sm font-semibold text-white">Admin User</p>
-                        <p class="text-xs text-white/70">Store Manager</p>
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="max-w-[1800px] mx-auto px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
+                        <i data-lucide="leaf" class="text-white w-6 h-6"></i>
                     </div>
-                    <img src="https://ui-avatars.com/api/?name=Admin+User" class="w-10 h-10 rounded-xl border-2 border-white/30">
+                    <div>
+                        <h1 class="text-2xl font-black heading-font text-slate-900">NIWAS</h1>
+                        <p class="text-xs uppercase tracking-widest text-emerald-600 font-bold">Management Hub</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center gap-2">
+                    <a href="/" class="nav-item {{ request()->is('/') ? 'nav-item-active' : '' }}">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a href="/inventory" class="nav-item {{ request()->is('inventory') ? 'nav-item-active' : '' }}">
+                        <i data-lucide="package" class="w-5 h-5"></i>
+                        <span>Inventory</span>
+                    </a>
+
+                    <a href="/sales" class="nav-item {{ request()->is('sales') ? 'nav-item-active' : '' }}">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <span>POS Terminal</span>
+                    </a>
+
+                    <a href="/analytics" class="nav-item {{ request()->is('analytics') ? 'nav-item-active' : '' }}">
+                        <i data-lucide="pie-chart" class="w-5 h-5"></i>
+                        <span>Analytics</span>
+                    </a>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="flex items-center gap-6">
+                    <!-- Search -->
+                    <div class="relative hidden lg:block">
+                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+                        <input type="text" 
+                               placeholder="Search anything..." 
+                               class="pl-12 pr-6 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-sm font-medium transition-all outline-none w-64">
+                    </div>
+
+                    <!-- Notifications -->
+                    <button class="relative p-3 rounded-xl hover:bg-slate-50 transition-all">
+                        <i data-lucide="bell" class="w-5 h-5 text-slate-600"></i>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full"></span>
+                    </button>
+
+                    <!-- User Profile -->
+                    <div class="flex items-center gap-3 pl-6 border-l border-slate-200">
+                        <div class="text-right">
+                            <p class="text-sm font-bold text-slate-900">Admin User</p>
+                            <p class="text-xs text-slate-500">Store Manager</p>
+                        </div>
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=10b981&color=fff" 
+                             class="w-11 h-11 rounded-xl border-2 border-emerald-100 shadow-md">
+                    </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </nav>
 
-        <!-- Content -->
-        <div class="flex-1 overflow-y-auto p-20 animate-fade-in">
+    <!-- Main Content Area -->
+    <main class="flex-1 px-8 py-12">
+        <div class="max-w-[1800px] mx-auto">
             @yield('content')
         </div>
-
     </main>
+
 </div>
 
 <script>
     lucide.createIcons();
-
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('collapsed');
-        localStorage.setItem('sidebar-collapsed', sidebar.classList.contains('collapsed'));
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem('sidebar-collapsed') === 'true') {
-            document.getElementById('sidebar').classList.add('collapsed');
-        }
-    });
 </script>
 
 </body>
