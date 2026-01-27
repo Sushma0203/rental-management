@@ -62,7 +62,7 @@
         .prof-card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 2rem;
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            border: 2px solid rgba(148, 163, 184, 0.3);
             box-shadow: 
                 0 20px 50px -12px rgba(0, 0, 0, 0.15),
                 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
@@ -85,9 +85,10 @@
 
         .prof-card:hover {
             transform: translateY(-8px);
+            border-color: rgba(16, 185, 129, 0.4);
             box-shadow: 
                 0 30px 70px -15px rgba(0, 0, 0, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+                0 0 0 1px rgba(16, 185, 129, 0.2) inset;
         }
 
         /* Top Navigation */
@@ -262,7 +263,7 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main class="flex-1 px-8 py-12">
+    <main class="flex-1 px-16 py-20">
         <div class="max-w-[1800px] mx-auto">
             @yield('content')
         </div>

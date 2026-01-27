@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="space-y-20 animate-fade-in-up">
+<div class="space-y-32 animate-fade-in-up">
     
     <!-- Hero Section -->
-    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-20">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-32">
         <div>
             <p class="text-sm font-bold text-emerald-400 uppercase tracking-[0.2em] mb-3">Welcome Back</p>
             <h1 class="text-6xl font-black heading-font text-white tracking-tight mb-3">
@@ -25,7 +25,7 @@
     </div>
 
     <!-- Stats Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-32">
         <div class="prof-card p-8 animate-fade-in" style="animation-delay: 0.1s">
             <div class="flex items-start justify-between mb-6">
                 <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200">
@@ -76,7 +76,7 @@
     </div>
 
     <!-- Charts Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-32">
         <!-- Revenue Chart -->
         <div class="lg:col-span-2 prof-card p-10 animate-fade-in" style="animation-delay: 0.5s">
             <div class="flex items-center justify-between mb-8">

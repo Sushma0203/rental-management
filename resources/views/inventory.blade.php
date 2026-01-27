@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="space-y-20 animate-fade-in-up">
+<div class="space-y-32 animate-fade-in-up">
     
     <!-- Header Section -->
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-32">
         <div>
             <p class="text-sm font-bold text-emerald-400 uppercase tracking-[0.2em] mb-3">Inventory Intelligence</p>
             <h1 class="text-6xl font-black heading-font text-white tracking-tight">
@@ -24,7 +24,7 @@
     </div>
 
     <!-- Stats Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-32">
         <div class="prof-card p-10 flex items-center gap-8 animate-fade-in" style="animation-delay: 0.1s">
             <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200 shrink-0">
                 <i data-lucide="database" class="w-10 h-10 text-white"></i>

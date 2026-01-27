@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="space-y-20 animate-fade-in-up">
+<div class="space-y-32 animate-fade-in-up">
     
     <!-- Header Section -->
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-32">
         <div>
             <p class="text-sm font-bold text-emerald-400 uppercase tracking-[0.2em] mb-3">Advanced Intelligence</p>
             <h1 class="text-6xl font-black heading-font text-white tracking-tight">
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Analytics Charts -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
         <div class="prof-card p-10 animate-fade-in" style="animation-delay: 0.1s">
             <div class="flex justify-between items-center mb-10">
                 <div>
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
         <div class="lg:col-span-2 prof-card p-10 animate-fade-in" style="animation-delay: 0.3s">
             <div class="flex justify-between items-center mb-10">
                 <div>

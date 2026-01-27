@@ -28,7 +28,7 @@
         </div>
 
         <!-- Product Grid -->
-        <div class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10 pr-4">
+        <div class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-14 pr-4">
             <!-- Product Card 1 -->
             <div class="prof-card p-6 flex flex-col group cursor-pointer hover:shadow-2xl active:scale-95 transition-all">
                 <div class="aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl mb-6 flex items-center justify-center text-slate-400 relative overflow-hidden group-hover:from-emerald-50 group-hover:to-emerald-100 transition-all">
