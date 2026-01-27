@@ -250,7 +250,7 @@
                 datasets: [{
                     label: 'Revenue',
                     data: [32000, 45000, 41000, 58000, 49000, 62000, 75000],
-                    borderColor: '#1cb07f',
+                    borderColor: '#10b981',
                     borderWidth: 4,
                     fill: true,
                     backgroundColor: (context) => {
