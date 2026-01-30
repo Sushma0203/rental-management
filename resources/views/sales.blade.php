@@ -11,7 +11,7 @@
             <!-- Header -->
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
                 <div>
-                    <p class="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-1">
+                    <p class="text-xs font-semibold uppercase tracking-widest mb-1" style="color: rgb(227, 184, 252);">
                         Point of Sale
                     </p>
                     <h1 class="text-2xl font-bold text-slate-800">
@@ -28,7 +28,7 @@
 
             <!-- Categories -->
             <div class="flex gap-3 mb-6 overflow-x-auto">
-                <button class="px-5 py-2 bg-emerald-600 text-white rounded-lg text-xs font-semibold">
+                <button class="px-5 py-2 rounded-lg text-xs font-semibold" style="background-color: rgb(227, 184, 252); color: #1f2937;">
                     All
                 </button>
                 <button class="px-5 py-2 bg-white border rounded-lg text-xs font-semibold text-slate-600">
@@ -56,7 +56,7 @@
 
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-slate-800">Rs. 1,45,000</span>
-                        <button class="px-3 py-2 bg-emerald-600 text-white rounded-lg text-xs">
+                        <button class="px-3 py-2 rounded-lg text-xs" style="background-color: rgb(227, 184, 252); color: #1f2937;">
                             Add
                         </button>
                     </div>
@@ -113,7 +113,7 @@
                     <span>Rs. 2,59,900</span>
                 </div>
 
-                <button class="w-full mt-4 py-3 bg-emerald-600 text-white rounded-lg font-semibold">
+                <button class="w-full mt-4 py-3 rounded-lg font-semibold" style="background-color: rgb(227, 184, 252); color: #1f2937;">
                     Process Payment
                 </button>
             </div>

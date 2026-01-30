@@ -42,8 +42,8 @@
         }
 
         .nav-link.active {
-            background-color: #10b981;
-            color: #ffffff;
+            background-color: rgb(227, 184, 252);
+            color: #1f2937;
         }
 
         /* CARD */
@@ -79,8 +79,8 @@
 
             <!-- LOGO -->
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
-                    <i data-lucide="leaf" class="w-5 h-5 text-white"></i>
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background-color: rgb(227, 184, 252);">
+                    <i data-lucide="leaf" class="w-5 h-5 text-slate-800"></i>
                 </div>
                 <div>
                     <h1 class="text-lg font-semibold">NIWAS</h1>

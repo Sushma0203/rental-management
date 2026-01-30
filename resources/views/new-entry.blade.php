@@ -35,7 +35,8 @@
                         id="customer_name" 
                         name="customer_name" 
                         value="{{ old('customer_name') }}"
-                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none @error('customer_name') border-red-500 @enderror"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 outline-none @error('customer_name') border-red-500 @enderror"
+                        style="--tw-ring-color: rgb(227, 184, 252);"
                         placeholder="Enter customer name"
                         required
                     >
@@ -54,7 +55,8 @@
                         id="product" 
                         name="product" 
                         value="{{ old('product') }}"
-                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none @error('product') border-red-500 @enderror"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 outline-none @error('product') border-red-500 @enderror"
+                        style="--tw-ring-color: rgb(227, 184, 252);"
                         placeholder="Enter product name"
                         required
                     >
@@ -75,7 +77,8 @@
                         value="{{ old('amount') }}"
                         step="0.01"
                         min="0"
-                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none @error('amount') border-red-500 @enderror"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 outline-none @error('amount') border-red-500 @enderror"
+                        style="--tw-ring-color: rgb(227, 184, 252);"
                         placeholder="0.00"
                         required
                     >
@@ -92,7 +95,8 @@
                     <select 
                         id="status" 
                         name="status"
-                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none @error('status') border-red-500 @enderror"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 outline-none @error('status') border-red-500 @enderror"
+                        style="--tw-ring-color: rgb(227, 184, 252);"
                         required
                     >
                         <option value="">Select status</option>
@@ -131,18 +135,18 @@
 }
 
 .btn-primary {
-    background: #2563eb;
-    color: white;
+    background: rgb(227, 184, 252);
+    color: #1f2937;
     padding: 10px 18px;
     border-radius: 10px;
     font-weight: 600;
 }
 
 .btn-outline {
-    border: 1px solid #cbd5f5;
+    border: 1px solid rgb(227, 184, 252);
     padding: 10px 18px;
     border-radius: 10px;
-    color: #2563eb;
+    color: rgb(227, 184, 252);
     font-weight: 600;
 }
 </style>

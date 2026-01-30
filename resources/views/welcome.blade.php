@@ -6,7 +6,7 @@
 
     <!-- SUCCESS MESSAGE -->
     @if(session('success'))
-    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-lg flex items-center gap-3">
+    <div class="px-4 py-3 rounded-lg flex items-center gap-3" style="background-color: rgba(227, 184, 252, 0.2); border: 1px solid rgba(227, 184, 252, 0.5); color: #1f2937;">
         <i data-lucide="check-circle" class="w-5 h-5"></i>
         <span>{{ session('success') }}</span>
     </div>
@@ -162,18 +162,18 @@
 }
 
 .btn-primary {
-    background: #2563eb;
-    color: white;
+    background: rgb(227, 184, 252);
+    color: #1f2937;
     padding: 10px 18px;
     border-radius: 10px;
     font-weight: 600;
 }
 
 .btn-outline {
-    border: 1px solid #cbd5f5;
+    border: 1px solid rgb(227, 184, 252);
     padding: 10px 18px;
     border-radius: 10px;
-    color: #2563eb;
+    color: rgb(227, 184, 252);
     font-weight: 600;
 }
 
