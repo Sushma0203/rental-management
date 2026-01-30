@@ -80,7 +80,7 @@
 
             <!-- LOGO -->
             <div class="flex items-center gap-3">
-                <img src="{{ asset('img/niwaslogo.png') }}" alt="NIWAS Logo" class="w-8 h-8 rounded-lg object-contain">
+                <img src="{{ asset('img/niwaslogo.png') }}" alt="NIWAS Logo" class="rounded-lg object-contain" style="width: 48px; height: 48px;">
                 <div>
                     <h1 class="text-lg font-semibold">NIWAS</h1>
                     <p class="text-xs text-slate-500">Management Hub</p>
