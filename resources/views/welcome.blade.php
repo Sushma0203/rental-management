@@ -4,6 +4,14 @@
 
 <div class="min-h-screen bg-[#f8fafc] px-4 py-6 space-y-8">
 
+    <!-- SUCCESS MESSAGE -->
+    @if(session('success'))
+    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-lg flex items-center gap-3">
+        <i data-lucide="check-circle" class="w-5 h-5"></i>
+        <span>{{ session('success') }}</span>
+    </div>
+    @endif
+
     <!-- HEADER -->
     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
@@ -16,12 +24,14 @@
         </div>
 
         <div class="flex gap-3">
-            <button class="btn-outline">
+            <a href="{{ route('dashboard.export') }}" class="btn-outline inline-flex items-center gap-2">
+                <i data-lucide="download" class="w-4 h-4"></i>
                 Export
-            </button>
-            <button class="btn-primary">
-                + New Entry
-            </button>
+            </a>
+            <a href="{{ route('dashboard.new-entry') }}" class="btn-primary inline-flex items-center gap-2">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                New Entry
+            </a>
         </div>
     </div>
 
