@@ -75,7 +75,7 @@
 
     <!-- TOP NAVBAR -->
     <header class="bg-white border-b">
-        <div class="max-w-[1600px] mx-auto px-8 py-4 flex items-center justify-between">
+        <div class="max-w-[1920px] mx-auto px-4 py-3 flex items-center justify-between">
 
             <!-- LOGO -->
             <div class="flex items-center gap-3">
@@ -135,7 +135,7 @@
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 max-w-[1600px] mx-auto w-full px-8 py-10">
+    <main class="flex-1 max-w-[1920px] mx-auto w-full px-4 py-6">
         @yield('content')
     </main>
 

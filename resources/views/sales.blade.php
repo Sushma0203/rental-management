@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-slate-50 px-6 py-8">
+<div class="min-h-screen bg-slate-50 px-4 py-6">
 
-    <div class="flex flex-col lg:flex-row gap-10">
+    <div class="flex flex-col lg:flex-row gap-6">
 
         <!-- PRODUCTS -->
         <div class="flex-1">
 
             <!-- Header -->
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
                 <div>
                     <p class="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-1">
                         Point of Sale
                     </p>
-                    <h1 class="text-3xl font-bold text-slate-800">
+                    <h1 class="text-2xl font-bold text-slate-800">
                         POS Terminal
                     </h1>
                 </div>
@@ -27,7 +27,7 @@
             </div>
 
             <!-- Categories -->
-            <div class="flex gap-3 mb-8 overflow-x-auto">
+            <div class="flex gap-3 mb-6 overflow-x-auto">
                 <button class="px-5 py-2 bg-emerald-600 text-white rounded-lg text-xs font-semibold">
                     All
                 </button>
@@ -43,7 +43,7 @@
             </div>
 
             <!-- Product Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
 
                 <!-- Product -->
                 <div class="bg-white border rounded-xl p-4 hover:shadow-md transition cursor-pointer">

@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="min-h-screen bg-[#f8fafc] px-6 lg:px-12 py-12 space-y-20">
+<div class="min-h-screen bg-[#f8fafc] px-4 py-6 space-y-8">
 
     <!-- HEADER -->
-    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-            <h1 class="text-4xl font-bold text-slate-800">
+            <h1 class="text-2xl font-bold text-slate-800">
                 Dashboard
             </h1>
             <p class="text-sm text-slate-500 mt-1">
@@ -35,13 +35,13 @@
         ];
     @endphp
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         @foreach($stats as $stat)
         <div class="glass-card">
             <p class="text-xs uppercase tracking-widest text-slate-400">
                 {{ $stat['label'] }}
             </p>
-            <h3 class="text-3xl font-semibold text-slate-800 mt-2">
+            <h3 class="text-2xl font-semibold text-slate-800 mt-2">
                 {{ $stat['value'] }}
             </h3>
         </div>
@@ -49,7 +49,7 @@
     </div>
 
     <!-- MAIN GRID -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         <!-- CHART -->
         <div class="glass-card lg:col-span-2">
@@ -140,13 +140,13 @@
 .glass-card {
     background: rgba(255,255,255,.7);
     backdrop-filter: blur(12px);
-    border-radius: 16px;
-    padding: 24px;
+    border-radius: 12px;
+    padding: 16px;
     border: 1px solid #e5e7eb;
 }
 
 .section-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #1f2937;
 }

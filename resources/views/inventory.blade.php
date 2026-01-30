@@ -2,15 +2,15 @@
 
 @section('content')
 
-<div class="min-h-screen bg-slate-50 px-6 lg:px-12 py-12 space-y-20">
+<div class="min-h-screen bg-slate-50 px-4 py-6 space-y-8">
 
     <!-- HEADER -->
-    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-            <p class="text-xs uppercase tracking-widest text-slate-400 mb-2">
+            <p class="text-xs uppercase tracking-widest text-slate-400 mb-1">
                 Inventory
             </p>
-            <h1 class="text-4xl font-semibold text-slate-800">
+            <h1 class="text-2xl font-semibold text-slate-800">
                 Asset Management
             </h1>
         </div>
@@ -22,7 +22,7 @@
     </div>
 
     <!-- STATS -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="stat-card">
             <p>Total Inventory</p>
             <h3>12,845</h3>
@@ -131,7 +131,7 @@
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
-    padding: 20px;
+    padding: 14px;
 }
 .stat-card p {
     font-size: 0.75rem;
@@ -139,7 +139,7 @@
     color: #64748b;
 }
 .stat-card h3 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 600;
     color: #1f2937;
 }
