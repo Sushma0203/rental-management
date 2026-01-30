@@ -19,7 +19,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background: linear-gradient(rgba(248, 250, 252, 0.95), rgba(248, 250, 252, 0.95)), 
+                        url('{{ asset('img/download.jpeg') }}') center/cover fixed;
             color: #0f172a;
         }
 
@@ -79,9 +80,7 @@
 
             <!-- LOGO -->
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background-color: rgb(227, 184, 252);">
-                    <i data-lucide="leaf" class="w-5 h-5 text-slate-800"></i>
-                </div>
+                <img src="{{ asset('img/niwaslogo.png') }}" alt="NIWAS Logo" class="w-8 h-8 rounded-lg object-contain">
                 <div>
                     <h1 class="text-lg font-semibold">NIWAS</h1>
                     <p class="text-xs text-slate-500">Management Hub</p>
