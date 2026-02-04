@@ -157,10 +157,8 @@
         </header>
 
         <!-- MAIN CONTENT -->
-        <main class="flex-1 p-8">
-            <div class="max-w-7xl mx-auto">
-                @yield('content')
-            </div>
+        <main class="flex-1 p-8 w-full">
+            @yield('content')
         </main>
 
     </div>
