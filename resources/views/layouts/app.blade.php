@@ -72,71 +72,98 @@
 
 <body>
 
-<div class="min-h-screen flex flex-col">
+<div class="flex min-h-screen bg-slate-50">
 
-    <!-- TOP NAVBAR -->
-    <header class="bg-white border-b">
-        <div class="max-w-[1920px] mx-auto px-4 py-3 flex items-center justify-between">
-
-            <!-- LOGO -->
-            <div class="flex items-center gap-3">
-                <img src="{{ asset('img/niwaslogo.png') }}" alt="NIWAS Logo" class="rounded-lg object-contain" style="width: 48px; height: 48px;">
-                <div>
-                    <h1 class="text-lg font-semibold">NIWAS</h1>
-                    <p class="text-xs text-slate-500">Management Hub</p>
-                </div>
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col fixed inset-y-0 left-0 z-50">
+        <!-- LOGO -->
+        <div class="h-20 flex items-center gap-3 px-6 border-b border-slate-100">
+            <img src="{{ asset('img/niwaslogo.png') }}" alt="NIWAS Logo" class="w-10 h-10 rounded-lg object-contain">
+            <div>
+                <h1 class="text-lg font-bold tracking-tight text-slate-800">NIWAS</h1>
+                <p class="text-[10px] font-medium text-slate-500 uppercase tracking-wider">Management Hub</p>
             </div>
+        </div>
 
-            <!-- NAV LINKS -->
-            <nav class="flex items-center gap-2">
+        <!-- NAV LINKS -->
+        <div class="flex-1 overflow-y-auto py-6 px-3">
+            <nav class="space-y-1">
                 <a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
-                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
-                    Dashboard
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span>Dashboard</span>
                 </a>
 
-                <a href="/inventory" class="nav-link {{ request()->is('inventory') ? 'active' : '' }}">
-                    <i data-lucide="package" class="w-4 h-4"></i>
-                    Inventory
+                <a href="/inventory" class="nav-link {{ request()->is('inventory*') ? 'active' : '' }}">
+                    <i data-lucide="package" class="w-5 h-5"></i>
+                    <span>Inventory</span>
                 </a>
 
-                <a href="/sales" class="nav-link {{ request()->is('sales') ? 'active' : '' }}">
-                    <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                    POS
+                <a href="/sales" class="nav-link {{ request()->is('sales*') ? 'active' : '' }}">
+                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                    <span>POS System</span>
                 </a>
 
-                <a href="/analytics" class="nav-link {{ request()->is('analytics') ? 'active' : '' }}">
-                    <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
-                    Analytics
+                <a href="/analytics" class="nav-link {{ request()->is('analytics*') ? 'active' : '' }}">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                    <span>Analytics</span>
                 </a>
             </nav>
+        </div>
 
-            <!-- USER -->
+        <!-- BOTTOM -->
+        <div class="p-4 border-t border-slate-100">
+            <p class="text-xs text-center text-slate-400">© {{ date('Y') }} NIWAS Manager</p>
+        </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="flex-1 flex flex-col ml-64 transition-all duration-300">
+        
+        <!-- TOP HEADER -->
+        <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 px-8 flex items-center justify-between">
+            <!-- Left: Search or Title (Optional) -->
             <div class="flex items-center gap-4">
-                <button class="relative">
-                    <i data-lucide="bell" class="w-5 h-5 text-slate-500"></i>
-                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                </button>
-
-                <div class="flex items-center gap-3">
-                    <img
-                        src="https://ui-avatars.com/api/?name=Admin+User&background=10b981&color=fff"
-                        class="w-9 h-9 rounded-full"
-                        alt="Admin"
-                    >
-                    <div class="text-sm">
-                        <p class="font-medium">Admin User</p>
-                        <p class="text-xs text-slate-500">Store Manager</p>
-                    </div>
-                </div>
+                <h2 class="text-lg font-semibold text-slate-700">
+                    @if(request()->is('/')) Dashboard
+                    @elseif(request()->is('inventory*')) Inventory
+                    @elseif(request()->is('sales*')) Point of Sale
+                    @elseif(request()->is('analytics*')) Analytics
+                    @else Overview
+                    @endif
+                </h2>
             </div>
 
-        </div>
-    </header>
+            <!-- Right: Actions & User -->
+            <div class="flex items-center gap-6">
+                <!-- Notifications -->
+                <button class="relative p-2 rounded-full hover:bg-slate-100 transition-colors">
+                    <i data-lucide="bell" class="w-5 h-5 text-slate-500"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full border border-white"></span>
+                </button>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 max-w-[1920px] mx-auto w-full px-4 py-6">
-        @yield('content')
-    </main>
+                <!-- User Profile -->
+                <div class="flex items-center gap-3 pl-6 border-l border-slate-200">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-semibold text-slate-700">Admin User</p>
+                        <p class="text-xs text-slate-500">Store Manager</p>
+                    </div>
+                    <img
+                        src="https://ui-avatars.com/api/?name=Admin+User&background=0f172a&color=fff"
+                        class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                        alt="Admin"
+                    >
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 p-8">
+            <div class="max-w-7xl mx-auto">
+                @yield('content')
+            </div>
+        </main>
+
+    </div>
 
 </div>
 
