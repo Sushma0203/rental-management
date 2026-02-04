@@ -75,13 +75,13 @@
 <div class="flex min-h-screen bg-slate-50">
 
     <!-- SIDEBAR -->
-    <aside class="w-48 bg-white border-r border-slate-200 flex flex-col fixed inset-y-0 left-0 z-50" style="width: 12rem;">
+    <aside class="w-56 bg-white border-r border-slate-200 flex flex-col fixed inset-y-0 left-0 z-50" style="width: 14rem;">
         <!-- LOGO -->
-        <div class="h-16 flex items-center gap-2 px-4 border-b border-slate-100" style="height: 4rem;">
-            <img src="{{ asset('img/niwaslogo.png') }}" alt="NIWAS Logo" class="w-8 h-8 rounded-lg object-contain">
+        <div class="h-20 flex items-center gap-3 px-5 border-b border-slate-100" style="height: 5rem;">
+            <img src="{{ asset('img/niwaslogo.png') }}" alt="NIWAS Logo" class="w-10 h-10 rounded-lg object-contain">
             <div>
-                <h1 class="text-base font-bold tracking-tight text-slate-800">NIWAS</h1>
-                <p class="text-[9px] font-medium text-slate-500 uppercase tracking-wider">Manager</p>
+                <h1 class="text-lg font-bold tracking-tight text-slate-800">NIWAS</h1>
+                <p class="text-[10px] font-medium text-slate-500 uppercase tracking-wider">Manager Hub</p>
             </div>
         </div>
 
@@ -117,7 +117,7 @@
     </aside>
 
     <!-- MAIN WRAPPER -->
-    <div class="flex-1 flex flex-col ml-48 transition-all duration-300" style="margin-left: 12rem;">
+    <div class="flex-1 flex flex-col ml-56 transition-all duration-300" style="margin-left: 14rem;">
         
         <!-- TOP HEADER -->
         <header class="h-16 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 px-6 flex items-center justify-between" style="height: 4rem;">
