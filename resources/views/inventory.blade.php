@@ -4,6 +4,14 @@
 
 <div class="space-y-8">
 
+    <!-- SUCCESS MESSAGE -->
+    @if(session('success'))
+    <div class="px-4 py-3 rounded-xl flex items-center gap-3 bg-emerald-50 border border-emerald-100 text-emerald-800">
+        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500"></i>
+        <span class="font-medium text-sm">{{ session('success') }}</span>
+    </div>
+    @endif
+
     <!-- HEADER -->
     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
@@ -20,10 +28,10 @@
                 <i data-lucide="filter" class="w-4 h-4 inline-block mr-2 text-slate-400"></i>
                 Filter
             </button>
-            <button class="px-4 py-2 bg-rose-500 text-white rounded-xl hover:bg-rose-600 transition-colors text-sm font-medium shadow-sm shadow-rose-200 flex items-center gap-2">
+            <a href="{{ route('inventory.create') }}" class="px-4 py-2 bg-rose-500 text-white rounded-xl hover:bg-rose-600 transition-colors text-sm font-medium shadow-sm shadow-rose-200 flex items-center gap-2">
                 <i data-lucide="plus" class="w-4 h-4"></i>
                 Add Asset
-            </button>
+            </a>
         </div>
     </div>
 
