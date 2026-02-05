@@ -2,33 +2,36 @@
 
 @section('content')
 
-<div class="min-h-screen bg-[#f8fafc] px-4 py-6 space-y-8">
+<div class="space-y-8">
 
     <!-- SUCCESS MESSAGE -->
     @if(session('success'))
-    <div class="px-4 py-3 rounded-lg flex items-center gap-3" style="background-color: rgba(227, 184, 252, 0.2); border: 1px solid rgba(227, 184, 252, 0.5); color: #1f2937;">
-        <i data-lucide="check-circle" class="w-5 h-5"></i>
-        <span>{{ session('success') }}</span>
+    <div class="px-4 py-3 rounded-xl flex items-center gap-3 bg-emerald-50 border border-emerald-100 text-emerald-800">
+        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500"></i>
+        <span class="font-medium text-sm">{{ session('success') }}</span>
     </div>
     @endif
 
     <!-- HEADER -->
     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-            <h1 class="text-2xl font-bold text-slate-800">
-                Dashboard
+            <h1 class="text-3xl font-bold text-slate-800 tracking-tight">
+                Dashboard Overview
             </h1>
-            <p class="text-sm text-slate-500 mt-1">
-                {{ date('l, F d, Y') }} • <span id="live-clock"></span>
+            <p class="text-slate-500 mt-2 flex items-center gap-2">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                {{ date('l, F d, Y') }}
+                <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                <span id="live-clock" class="font-mono"></span>
             </p>
         </div>
 
-        <div class="flex gap-3">
-            <a href="{{ route('dashboard.export') }}" class="btn-outline inline-flex items-center gap-2">
+        <div class="flex items-center gap-3">
+            <a href="{{ route('dashboard.export') }}" class="px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 transition-colors text-sm font-medium shadow-sm inline-flex items-center gap-2">
                 <i data-lucide="download" class="w-4 h-4"></i>
-                Export
+                Export Report
             </a>
-            <a href="{{ route('dashboard.new-entry') }}" class="btn-primary inline-flex items-center gap-2">
+            <a href="{{ route('dashboard.new-entry') }}" class="px-4 py-2 bg-rose-500 text-white rounded-xl hover:bg-rose-600 transition-colors text-sm font-medium shadow-sm shadow-rose-200 inline-flex items-center gap-2">
                 <i data-lucide="plus" class="w-4 h-4"></i>
                 New Entry
             </a>
@@ -38,34 +41,47 @@
     <!-- STATS -->
     @php
         $stats = [
-            ['label'=>'Revenue','value'=>'Rs. 4.29L'],
-            ['label'=>'Orders','value'=>'842'],
-            ['label'=>'Customers','value'=>'1,248'],
-            ['label'=>'Avg Order','value'=>'Rs. 5,100'],
+            ['label'=>'Total Revenue', 'value'=>'Rs. 4.29L', 'icon'=>'indian-rupee', 'trend'=>'+12%'],
+            ['label'=>'Total Orders', 'value'=>'842', 'icon'=>'shopping-bag', 'trend'=>'+5%'],
+            ['label'=>'Active Customers', 'value'=>'1,248', 'icon'=>'users', 'trend'=>'+8%'],
+            ['label'=>'Avg Order Value', 'value'=>'Rs. 5,100', 'icon'=>'bar-chart-2', 'trend'=>'-2%'],
         ];
     @endphp
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         @foreach($stats as $stat)
-        <div class="glass-card">
-            <p class="text-xs uppercase tracking-widest text-slate-400">
-                {{ $stat['label'] }}
-            </p>
-            <h3 class="text-2xl font-semibold text-slate-800 mt-2">
-                {{ $stat['value'] }}
-            </h3>
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group hover:border-rose-100 hover:shadow-md transition-all">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">{{ $stat['label'] }}</p>
+                    <h3 class="text-2xl font-bold text-slate-800 mt-2">{{ $stat['value'] }}</h3>
+                </div>
+                <div class="p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:bg-rose-50 group-hover:text-rose-500 transition-colors">
+                    <i data-lucide="{{ $stat['icon'] ?? 'activity' }}" class="w-5 h-5"></i>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center gap-2">
+                <span class="text-xs font-medium {{ str_contains($stat['trend'], '+') ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50' }} px-2 py-0.5 rounded-full">
+                    {{ $stat['trend'] }}
+                </span>
+                <span class="text-xs text-slate-400">vs last month</span>
+            </div>
         </div>
         @endforeach
     </div>
 
     <!-- MAIN GRID -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
         <!-- CHART -->
-        <div class="glass-card lg:col-span-2">
-            <h3 class="section-title">Revenue Overview</h3>
-            <div class="h-72 mt-6">
-                <canvas id="revenueChart"></canvas>
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 lg:col-span-2">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-bold text-slate-800">Revenue Overview</h3>
+                <button class="text-sm text-slate-400 hover:text-rose-500 transition-colors">View Details</button>
+            </div>
+            <div class="h-80 w-full bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100 border-dashed">
+                <p class="text-slate-400 text-sm">Chart Placeholder</p>
+                <!-- <canvas id="revenueChart"></canvas> -->
             </div>
         </div>
 
@@ -78,62 +94,86 @@
             ];
         @endphp
 
-        <div class="glass-card">
-            <h3 class="section-title">Low Stock</h3>
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-bold text-slate-800">Low Stock Alerts</h3>
+                <span class="px-2 py-1 bg-rose-50 text-rose-600 text-xs font-bold rounded-lg">{{ count($alerts) }} Items</span>
+            </div>
 
-            <div class="space-y-4 mt-6">
+            <div class="space-y-4">
                 @foreach($alerts as $alert)
-                <div class="flex justify-between items-center border-b pb-3">
-                    <div>
-                        <p class="font-medium text-slate-700">
-                            {{ $alert['name'] }}
-                        </p>
-                        <p class="text-xs text-slate-400">
-                            {{ $alert['stock'] }} units remaining
-                        </p>
+                <div class="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-rose-500 shadow-sm">
+                            <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-sm text-slate-700">
+                                {{ $alert['name'] }}
+                            </p>
+                            <p class="text-xs text-slate-500">
+                                {{ $alert['stock'] }} units remaining
+                            </p>
+                        </div>
                     </div>
-                    <span class="text-xs font-semibold text-rose-600">
-                        Alert
-                    </span>
+                    <button class="text-xs font-semibold text-rose-600 hover:text-rose-700 hover:underline">
+                        Restock
+                    </button>
                 </div>
                 @endforeach
             </div>
+            
+            <button class="w-full mt-6 py-2 text-sm font-medium text-slate-500 hover:text-slate-800 border-t border-slate-100 transition-colors">
+                View All Inventory
+            </button>
         </div>
     </div>
 
     <!-- RECENT ACTIVITY -->
-    <div class="glass-card">
-        <h3 class="section-title mb-6">
-            Recent Transactions
-        </h3>
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-slate-50 flex justify-between items-center">
+            <h3 class="text-lg font-bold text-slate-800">
+                Recent Transactions
+            </h3>
+            <button class="text-sm text-slate-400 hover:text-rose-500 transition-colors">View All</button>
+        </div>
 
         <div class="overflow-x-auto">
-            <table class="w-full text-sm">
-                <thead class="text-left text-slate-400 border-b">
+            <table class="w-full text-sm text-left">
+                <thead class="bg-slate-50/50 text-slate-500 font-medium">
                     <tr>
-                        <th class="pb-3">Ref</th>
-                        <th class="pb-3">Customer</th>
-                        <th class="pb-3">Product</th>
-                        <th class="pb-3">Status</th>
-                        <th class="pb-3 text-right">Amount</th>
+                        <th class="px-6 py-4">Ref ID</th>
+                        <th class="px-6 py-4">Customer</th>
+                        <th class="px-6 py-4">Product</th>
+                        <th class="px-6 py-4">Status</th>
+                        <th class="px-6 py-4 text-right">Amount</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y">
+                <tbody class="divide-y divide-slate-50">
                     @foreach([
-                        ['#8291','Bhuwan KC','MacBook','Done','12,900'],
-                        ['#8292','Sarah S','AirPods','Pending','4,500'],
-                        ['#8293','Sulav S','iPad','Done','8,200'],
+                        ['#8291','Bhuwan KC','MacBook Pro M3','Done','12,900'],
+                        ['#8292','Sarah S','AirPods Pro','Pending','4,500'],
+                        ['#8293','Sulav S','iPad Air','Done','8,200'],
+                        ['#8294','John D','Magic Keyboard','Done','3,100'],
                     ] as $row)
-                    <tr>
-                        <td class="py-4 text-slate-400">{{ $row[0] }}</td>
-                        <td class="py-4 font-medium">{{ $row[1] }}</td>
-                        <td class="py-4">{{ $row[2] }}</td>
-                        <td class="py-4">
-                            <span class="badge {{ $row[3]=='Done' ? 'badge-success' : 'badge-warn' }}">
+                    <tr class="hover:bg-slate-50/50 transition-colors">
+                        <td class="px-6 py-4 font-mono text-slate-400 text-xs">{{ $row[0] }}</td>
+                        <td class="px-6 py-4 font-medium text-slate-700">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-400">
+                                    {{ substr($row[1], 0, 1) }}
+                                </div>
+                                {{ $row[1] }}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-slate-600">{{ $row[2] }}</td>
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium {{ $row[3]=='Done' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 'bg-amber-50 text-amber-700 border border-amber-100' }}">
+                                <span class="w-1.5 h-1.5 rounded-full {{ $row[3]=='Done' ? 'bg-emerald-500' : 'bg-amber-500' }}"></span>
                                 {{ $row[3] }}
                             </span>
                         </td>
-                        <td class="py-4 text-right font-semibold">
+                        <td class="px-6 py-4 text-right font-semibold text-slate-700">
                             Rs. {{ $row[4] }}
                         </td>
                     </tr>
@@ -144,55 +184,6 @@
     </div>
 
 </div>
-
-<!-- STYLES -->
-<style>
-.glass-card {
-    background: rgba(255,255,255,.7);
-    backdrop-filter: blur(12px);
-    border-radius: 12px;
-    padding: 16px;
-    border: 1px solid #e5e7eb;
-}
-
-.section-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1f2937;
-}
-
-.btn-primary {
-    background: rgb(227, 184, 252);
-    color: #1f2937;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-weight: 600;
-}
-
-.btn-outline {
-    border: 1px solid rgb(227, 184, 252);
-    padding: 10px 18px;
-    border-radius: 10px;
-    color: rgb(227, 184, 252);
-    font-weight: 600;
-}
-
-.badge {
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-}
-
-.badge-success {
-    background: #dcfce7;
-    color: #15803d;
-}
-
-.badge-warn {
-    background: #fef3c7;
-    color: #b45309;
-}
-</style>
 
 <script>
 setInterval(() => {
