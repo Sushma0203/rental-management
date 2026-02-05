@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>NIWAS – Admin Panel</title>
+    <title>KIRO – Admin Panel</title>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,10 +50,10 @@
         <div class="h-20 flex items-center px-8 border-b border-slate-50">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-400 to-purple-500 flex items-center justify-center text-white shadow-lg shadow-rose-200">
-                    <span class="font-bold text-lg">N</span>
+                    <span class="font-bold text-lg">K</span>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold tracking-tight text-slate-800 leading-none">NIWAS</h1>
+                    <h1 class="text-lg font-bold tracking-tight text-slate-800 leading-none">KIRO</h1>
                     <p class="text-[10px] font-medium text-slate-400 uppercase tracking-wider mt-1">Management Hub</p>
                 </div>
             </div>
