@@ -79,9 +79,8 @@
                 <h3 class="text-lg font-bold text-slate-800">Revenue Overview</h3>
                 <button class="text-sm text-slate-400 hover:text-rose-500 transition-colors">View Details</button>
             </div>
-            <div class="h-80 w-full bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100 border-dashed">
-                <p class="text-slate-400 text-sm">Chart Placeholder</p>
-                <!-- <canvas id="revenueChart"></canvas> -->
+            <div class="h-80 w-full">
+                <canvas id="revenueChart"></canvas>
             </div>
         </div>
 
@@ -186,10 +185,82 @@
 </div>
 
 <script>
-setInterval(() => {
-    document.getElementById('live-clock').innerText =
-        new Date().toLocaleTimeString([], { hour12:false });
-}, 1000);
+    // Live Clock
+    setInterval(() => {
+        document.getElementById('live-clock').innerText =
+            new Date().toLocaleTimeString([], { hour12:false });
+    }, 1000);
+
+    // Revenue Chart
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            datasets: [{
+                label: 'Revenue (Rs.)',
+                data: [12000, 19000, 15000, 25000, 22000, 30000, 42000],
+                borderColor: '#f43f5e', // rose-500
+                backgroundColor: 'rgba(244, 63, 94, 0.1)',
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#f43f5e',
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    padding: 12,
+                    titleFont: { size: 13, family: "'Outfit', sans-serif" },
+                    bodyFont: { size: 13, family: "'Outfit', sans-serif" },
+                    cornerRadius: 8,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return 'Rs. ' + context.parsed.y.toLocaleString();
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: '#f1f5f9',
+                        drawBorder: false
+                    },
+                    ticks: {
+                        font: { family: "'Outfit', sans-serif", size: 11 },
+                        color: '#94a3b8',
+                        callback: function(value) {
+                            return 'Rs. ' + (value / 1000) + 'k';
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        font: { family: "'Outfit', sans-serif", size: 11 },
+                        color: '#94a3b8'
+                    }
+                }
+            }
+        }
+    });
 </script>
 
 @endsection
