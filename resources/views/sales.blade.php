@@ -244,6 +244,11 @@
                      <span class="font-semibold text-slate-800 text-sm w-16 text-right">
                         Rs. ${(itemTotal / 1000 >= 1 ? (itemTotal/1000).toFixed(1) + 'k' : itemTotal)}
                      </span>
+                     
+                     <!-- Delete Button -->
+                     <button onclick="removeFromCart('${item.sku}')" class="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-all" title="Remove Item">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                     </button>
                 </div>
             `;
             container.appendChild(div);
