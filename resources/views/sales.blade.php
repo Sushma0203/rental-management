@@ -69,7 +69,7 @@
 
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-slate-800">Rs. {{ number_format($product['price']) }}</span>
-                        <button class="px-3 py-2 rounded-lg text-xs font-medium hover:opacity-90 transition-opacity" style="background-color: rgb(227, 184, 252); color: #1f2937;">
+                        <button onclick="addToCart(@js($product))" class="px-3 py-2 rounded-lg text-xs font-medium hover:opacity-90 transition-opacity" style="background-color: rgb(227, 184, 252); color: #1f2937;">
                             Add
                         </button>
                     </div>
@@ -95,43 +95,32 @@
             </div>
 
             <!-- Items -->
-            <div class="flex-1 overflow-y-auto p-6 space-y-4">
-
-                <div class="flex justify-between items-center">
-                    <div>
-                        <p class="font-medium text-slate-800">iPhone 15 Pro</p>
-                        <p class="text-xs text-slate-500">Rs. 1,45,000 × 1</p>
-                    </div>
-                    <span class="font-semibold text-slate-800">Rs. 1.45L</span>
+            <!-- Items -->
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <!-- Cart items will be injected here via JS -->
+                <div class="text-center text-slate-400 mt-10">
+                    <p class="text-sm">Cart is empty</p>
                 </div>
-
-                <div class="flex justify-between items-center">
-                    <div>
-                        <p class="font-medium text-slate-800">AirPods Pro</p>
-                        <p class="text-xs text-slate-500">Rs. 85,000 × 1</p>
-                    </div>
-                    <span class="font-semibold text-slate-800">Rs. 85K</span>
-                </div>
-
             </div>
 
+            <!-- Totals -->
             <!-- Totals -->
             <div class="p-6 border-t space-y-4 bg-slate-50">
                 <div class="flex justify-between text-sm">
                     <span>Subtotal</span>
-                    <span class="font-semibold">Rs. 2,30,000</span>
+                    <span id="cart-subtotal" class="font-semibold">Rs. 0</span>
                 </div>
                 <div class="flex justify-between text-sm">
                     <span>VAT (13%)</span>
-                    <span class="font-semibold">Rs. 29,900</span>
+                    <span id="cart-vat" class="font-semibold">Rs. 0</span>
                 </div>
 
                 <div class="flex justify-between text-lg font-bold pt-3 border-t">
                     <span>Total</span>
-                    <span>Rs. 2,59,900</span>
+                    <span id="cart-total">Rs. 0</span>
                 </div>
 
-                <button class="w-full mt-4 py-3 rounded-lg font-semibold" style="background-color: rgb(227, 184, 252); color: #1f2937;">
+                <button class="w-full mt-4 py-3 rounded-lg font-semibold hover:opacity-95 transition-opacity" style="background-color: rgb(227, 184, 252); color: #1f2937;">
                     Process Payment
                 </button>
             </div>
@@ -139,4 +128,80 @@
         </div>
     </div>
 </div>
+
+<script>
+    let cart = [];
+
+    function addToCart(product) {
+        const existingItem = cart.find(item => item.sku === product.sku);
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        updateCartUI();
+    }
+
+    function removeFromCart(sku) {
+        cart = cart.filter(item => item.sku !== sku);
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const container = document.getElementById('cart-items');
+        const subtotalEl = document.getElementById('cart-subtotal');
+        const vatEl = document.getElementById('cart-vat');
+        const totalEl = document.getElementById('cart-total');
+
+        // Clear container
+        container.innerHTML = '';
+
+        if (cart.length === 0) {
+            container.innerHTML = `
+                <div class="text-center text-slate-400 mt-10">
+                    <p class="text-sm">Cart is empty</p>
+                </div>
+            `;
+            subtotalEl.innerText = 'Rs. 0';
+            vatEl.innerText = 'Rs. 0';
+            totalEl.innerText = 'Rs. 0';
+            return;
+        }
+
+        let subtotal = 0;
+
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            const div = document.createElement('div');
+            div.className = 'flex justify-between items-center mb-3 group';
+            div.innerHTML = `
+                <div>
+                    <p class="font-medium text-slate-800 text-sm">${item.name}</p>
+                    <p class="text-xs text-slate-500">Rs. ${item.price.toLocaleString()} × ${item.quantity}</p>
+                </div>
+                <div class="flex items-center gap-3">
+                     <span class="font-semibold text-slate-800 text-sm">Rs. ${(itemTotal / 1000 >= 1 ? (itemTotal/1000).toFixed(1) + 'k' : itemTotal)}</span>
+                     <button onclick="removeFromCart('${item.sku}')" class="text-slate-300 hover:text-red-500 transition-colors p-1">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                     </button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+
+        const vat = subtotal * 0.13;
+        const total = subtotal + vat;
+
+        subtotalEl.innerText = 'Rs. ' + subtotal.toLocaleString();
+        vatEl.innerText = 'Rs. ' + vat.toLocaleString();
+        totalEl.innerText = 'Rs. ' + total.toLocaleString();
+
+        // Refresh icons
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+</script>
 @endsection
