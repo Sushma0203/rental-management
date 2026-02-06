@@ -129,7 +129,7 @@
                     <span id="cart-total">Rs. 0</span>
                 </div>
 
-                <button class="w-full mt-4 py-3 rounded-lg font-semibold hover:opacity-95 transition-opacity" style="background-color: rgb(227, 184, 252); color: #1f2937;">
+                <button onclick="processPayment()" id="pay-btn" class="w-full mt-4 py-3 rounded-lg font-semibold hover:opacity-95 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed" style="background-color: rgb(227, 184, 252); color: #1f2937;">
                     Process Payment
                 </button>
             </div>
@@ -210,6 +210,43 @@
         // Refresh icons
         if (window.lucide) {
             lucide.createIcons();
+        }
+    }
+    }
+
+    async function processPayment() {
+        if (cart.length === 0) return;
+
+        const btn = document.getElementById('pay-btn');
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = 'Processing...';
+
+        try {
+            const response = await fetch("{{ route('sales.store') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({ items: cart })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert('Payment Successful! Sale ID: ' + data.sale_id);
+                cart = [];
+                updateCartUI();
+            } else {
+                alert('Payment Failed: ' + (data.message || 'Unknown error'));
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while processing payment.');
+        } finally {
+            btn.disabled = false;
+            btn.innerText = originalText;
         }
     }
 </script>

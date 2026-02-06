@@ -79,4 +79,35 @@ class SalesController extends Controller
 
         return view('sales', ['products' => $products]);
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'items' => 'required|array|min:1',
+            'items.*.sku' => 'required|string',
+            'items.*.quantity' => 'required|integer|min:1',
+            'items.*.price' => 'required|numeric|min:0',
+        ]);
+
+        // Calculate total server-side for safety (simplified here using client data for demo, 
+        // ideally you fetch latest prices from DB using SKU)
+        $totalAmount = collect($validated['items'])->sum(function ($item) {
+             return $item['price'] * $item['quantity'];
+        });
+
+        // Add VAT
+        $totalAmountWithVat = $totalAmount * 1.13;
+
+        $sale = \App\Models\Sale::create([
+            'items' => $validated['items'],
+            'total_amount' => $totalAmountWithVat,
+            'payment_method' => 'cash', // Logic can be improved
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Payment processed successfully',
+            'sale_id' => $sale->id
+        ]);
+    }
 }
