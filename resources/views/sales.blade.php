@@ -78,8 +78,11 @@
 
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-slate-800">Rs. {{ number_format($product['price']) }}</span>
-                        <button onclick="addToCart(@js($product))" class="px-3 py-2 rounded-lg text-xs font-medium hover:opacity-90 transition-opacity" style="background-color: rgb(227, 184, 252); color: #1f2937;">
-                            Add
+                        <button onclick="addToCart(@js($product))" 
+                                class="px-3 py-2 rounded-lg text-xs font-medium transition-opacity {{ $product['stock'] == 0 ? 'opacity-50 cursor-not-allowed bg-slate-200 text-slate-400' : 'hover:opacity-90' }}" 
+                                style="{{ $product['stock'] > 0 ? 'background-color: rgb(227, 184, 252); color: #1f2937;' : '' }}"
+                                {{ $product['stock'] == 0 ? 'disabled' : '' }}>
+                            {{ $product['stock'] == 0 ? 'Out of Stock' : 'Add' }}
                         </button>
                     </div>
                 </div>
@@ -142,11 +145,46 @@
     let cart = [];
 
     function addToCart(product) {
+        // Find existing item
         const existingItem = cart.find(item => item.sku === product.sku);
+        
+        // Calculate current quantity in cart
+        const currentQtyInCart = existingItem ? existingItem.quantity : 0;
+        
+        // Check stock limit
+        if (currentQtyInCart + 1 > product.stock) {
+            alert('Cannot add more. Only ' + product.stock + ' items in stock.');
+            return;
+        }
+
         if (existingItem) {
             existingItem.quantity++;
         } else {
             cart.push({ ...product, quantity: 1 });
+        }
+        updateCartUI();
+    }
+
+    function decreaseQty(sku) {
+        const item = cart.find(item => item.sku === sku);
+        if (item) {
+            if (item.quantity > 1) {
+                item.quantity--;
+            } else {
+                 cart = cart.filter(product => product.sku !== sku);
+            }
+        }
+        updateCartUI();
+    }
+
+    function increaseQty(sku) {
+        const item = cart.find(item => item.sku === sku);
+        if (item) {
+            if (item.quantity + 1 > item.stock) {
+                 alert('Max stock reached (' + item.stock + ')');
+                 return;
+            }
+            item.quantity++;
         }
         updateCartUI();
     }
@@ -186,15 +224,26 @@
             const div = document.createElement('div');
             div.className = 'flex justify-between items-center mb-3 group';
             div.innerHTML = `
-                <div>
+                <div class="flex-1">
                     <p class="font-medium text-slate-800 text-sm">${item.name}</p>
-                    <p class="text-xs text-slate-500">Rs. ${item.price.toLocaleString()} × ${item.quantity}</p>
+                    <p class="text-xs text-slate-500">Rs. ${item.price.toLocaleString()} each</p>
                 </div>
+                
                 <div class="flex items-center gap-3">
-                     <span class="font-semibold text-slate-800 text-sm">Rs. ${(itemTotal / 1000 >= 1 ? (itemTotal/1000).toFixed(1) + 'k' : itemTotal)}</span>
-                     <button onclick="removeFromCart('${item.sku}')" class="text-slate-300 hover:text-red-500 transition-colors p-1">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                     </button>
+                    <!-- Quantity Controls -->
+                    <div class="flex items-center gap-2 bg-slate-100 rounded-lg px-2 py-1">
+                        <button onclick="decreaseQty('${item.sku}')" class="text-slate-400 hover:text-rose-500 transition-colors">
+                            <i data-lucide="minus" class="w-3 h-3"></i>
+                        </button>
+                        <span class="text-xs font-semibold w-4 text-center">${item.quantity}</span>
+                        <button onclick="increaseQty('${item.sku}')" class="text-slate-400 hover:text-emerald-500 transition-colors">
+                            <i data-lucide="plus" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+
+                     <span class="font-semibold text-slate-800 text-sm w-16 text-right">
+                        Rs. ${(itemTotal / 1000 >= 1 ? (itemTotal/1000).toFixed(1) + 'k' : itemTotal)}
+                     </span>
                 </div>
             `;
             container.appendChild(div);
@@ -207,11 +256,9 @@
         vatEl.innerText = 'Rs. ' + vat.toLocaleString();
         totalEl.innerText = 'Rs. ' + total.toLocaleString();
 
-        // Refresh icons
         if (window.lucide) {
             lucide.createIcons();
         }
-    }
     }
 
     async function processPayment() {
