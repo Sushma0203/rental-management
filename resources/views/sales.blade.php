@@ -22,12 +22,16 @@
 
                 <div class="relative w-full md:w-80 mt-4 md:mt-0">
                     <form method="GET" action="{{ route('sales') }}">
-                        <input type="text"
-                            name="search"
-                            value="{{ request('search') }}"
-                            placeholder="Search or Scan SKU"
-                            class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
-                            onchange="this.form.submit()">
+                        <div class="relative group">
+                            <input type="text"
+                                name="search"
+                                value="{{ request('search') }}"
+                                placeholder="Search products..."
+                                class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-100 focus:border-rose-400 transition-all shadow-sm group-hover:shadow-md"
+                                onchange="this.form.submit()">
+                            <i data-lucide="search" class="absolute left-4 top-3.5 w-4 h-4 text-slate-400 group-hover:text-rose-400 transition-colors"></i>
+                        </div>
+                        
                         <!-- Retain category if exists -->
                         @if(request('category'))
                             <input type="hidden" name="category" value="{{ request('category') }}">
@@ -37,7 +41,7 @@
             </div>
 
             <!-- Categories -->
-            <div class="flex gap-3 mb-6 overflow-x-auto">
+            <div class="flex items-center gap-3 mb-8 overflow-x-auto pb-2">
                 @php
                     $categories = ['All', 'Electronics', 'Audio', 'Computers', 'Tablets'];
                     $currentCategory = request('category', 'All');
@@ -45,11 +49,16 @@
                 
                 @foreach($categories as $cat)
                     <a href="{{ route('sales', ['category' => $cat, 'search' => request('search')]) }}" 
-                       class="px-5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors
+                       class="relative px-6 py-2.5 rounded-2xl text-sm font-medium whitespace-nowrap transition-all duration-300 overflow-hidden group
                        {{ $currentCategory == $cat 
-                           ? 'bg-[rgb(227,184,252)] text-gray-800' 
-                           : 'bg-white border text-slate-600 hover:bg-slate-50' }}">
-                        {{ $cat }}
+                           ? 'text-white shadow-lg shadow-rose-200 ring-1 ring-rose-300 ring-offset-1' 
+                           : 'bg-white text-slate-500 border border-slate-100 shadow-sm hover:shadow-md hover:border-rose-100 hover:text-rose-600' }}">
+                        
+                        @if($currentCategory == $cat)
+                            <div class="absolute inset-0 bg-gradient-to-br from-rose-400 to-purple-500"></div>
+                        @endif
+
+                        <span class="relative z-10">{{ $cat }}</span>
                     </a>
                 @endforeach
             </div>
