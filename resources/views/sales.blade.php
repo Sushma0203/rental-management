@@ -6,6 +6,7 @@
     <div class="flex flex-col lg:flex-row gap-6">
 
         <!-- PRODUCTS -->
+        <!-- PRODUCTS -->
         <div class="flex-1">
 
             <!-- Header -->
@@ -20,49 +21,66 @@
                 </div>
 
                 <div class="relative w-full md:w-80 mt-4 md:mt-0">
-                    <input type="text"
-                        placeholder="Search or Scan SKU"
-                        class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <form method="GET" action="{{ route('sales') }}">
+                        <input type="text"
+                            name="search"
+                            value="{{ request('search') }}"
+                            placeholder="Search or Scan SKU"
+                            class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                            onchange="this.form.submit()">
+                        <!-- Retain category if exists -->
+                        @if(request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
+                    </form>
                 </div>
             </div>
 
             <!-- Categories -->
             <div class="flex gap-3 mb-6 overflow-x-auto">
-                <button class="px-5 py-2 rounded-lg text-xs font-semibold" style="background-color: rgb(227, 184, 252); color: #1f2937;">
-                    All
-                </button>
-                <button class="px-5 py-2 bg-white border rounded-lg text-xs font-semibold text-slate-600">
-                    Electronics
-                </button>
-                <button class="px-5 py-2 bg-white border rounded-lg text-xs font-semibold text-slate-600">
-                    Audio
-                </button>
-                <button class="px-5 py-2 bg-white border rounded-lg text-xs font-semibold text-slate-600">
-                    Accessories
-                </button>
+                @php
+                    $categories = ['All', 'Electronics', 'Audio', 'Computers', 'Tablets'];
+                    $currentCategory = request('category', 'All');
+                @endphp
+                
+                @foreach($categories as $cat)
+                    <a href="{{ route('sales', ['category' => $cat, 'search' => request('search')]) }}" 
+                       class="px-5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors
+                       {{ $currentCategory == $cat 
+                           ? 'bg-[rgb(227,184,252)] text-gray-800' 
+                           : 'bg-white border text-slate-600 hover:bg-slate-50' }}">
+                        {{ $cat }}
+                    </a>
+                @endforeach
             </div>
 
             <!-- Product Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-
+                
+                @forelse($products as $product)
                 <!-- Product -->
-                <div class="bg-white border rounded-xl p-4 hover:shadow-md transition cursor-pointer">
-                    <div class="h-40 bg-slate-100 rounded-lg mb-4 flex items-center justify-center">
-                        <i data-lucide="smartphone" class="w-10 h-10 text-slate-500"></i>
+                <div class="bg-white border rounded-xl p-4 hover:shadow-md transition cursor-pointer group">
+                    <div class="h-40 bg-slate-100 rounded-lg mb-4 flex items-center justify-center group-hover:bg-rose-50/50 transition-colors">
+                        <i data-lucide="{{ $product['image_icon'] }}" class="w-10 h-10 text-slate-500 group-hover:text-rose-500 transition-colors"></i>
                     </div>
-                    <p class="text-xs text-slate-400 uppercase mb-1">Apple</p>
-                    <h4 class="font-semibold text-slate-800">iPhone 15 Pro Max</h4>
-                    <p class="text-xs text-slate-500 mb-4">256GB</p>
+                    <p class="text-xs text-slate-400 uppercase mb-1">{{ $product['category'] }}</p>
+                    <h4 class="font-semibold text-slate-800 line-clamp-1" title="{{ $product['name'] }}">{{ $product['name'] }}</h4>
+                    <p class="text-xs text-slate-500 mb-4">{{ $product['sku'] }}</p>
 
                     <div class="flex justify-between items-center">
-                        <span class="font-bold text-slate-800">Rs. 1,45,000</span>
-                        <button class="px-3 py-2 rounded-lg text-xs" style="background-color: rgb(227, 184, 252); color: #1f2937;">
+                        <span class="font-bold text-slate-800">Rs. {{ number_format($product['price']) }}</span>
+                        <button class="px-3 py-2 rounded-lg text-xs font-medium hover:opacity-90 transition-opacity" style="background-color: rgb(227, 184, 252); color: #1f2937;">
                             Add
                         </button>
                     </div>
                 </div>
-
-                <!-- duplicate cards as needed -->
+                @empty
+                <!-- Empty State -->
+                <div class="col-span-full flex flex-col items-center justify-center py-12 text-center text-slate-500">
+                    <i data-lucide="package-search" class="w-12 h-12 mb-3 text-slate-300"></i>
+                    <p>No products found matching your search.</p>
+                </div>
+                @endforelse
 
             </div>
         </div>

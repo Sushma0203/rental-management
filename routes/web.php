@@ -16,9 +16,7 @@ Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory
 Route::get('/inventory/create', [InventoryController::class, 'create'])->name('inventory.create');
 Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
 
-Route::get('/sales', function () {
-    return view('sales');
-})->name('sales');
+Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])->name('sales');
 
 Route::get('/analytics', function () {
     return view('analytics');
